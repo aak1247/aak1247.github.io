@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="关于AOPAOP的应用场景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在许多系统中都会有一些公共的行为或者逻辑，如果分散在各处一则重复代码很不优美，二则会给修改维护带来一些问题。将这些公共的行为抽离出来作为单独的可重用组件供需要的其他组件进行调用可以很有效地解决上述问题，而抽离出来的组件就是一个切面（Aspect）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot配置AOP实践">
+<meta property="og:url" content="http://example.com/2017/10/28/spirng-boot-aop/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于AOPAOP的应用场景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在许多系统中都会有一些公共的行为或者逻辑，如果分散在各处一则重复代码很不优美，二则会给修改维护带来一些问题。将这些公共的行为抽离出来作为单独的可重用组件供需要的其他组件进行调用可以很有效地解决上述问题，而抽离出来的组件就是一个切面（Aspect）。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-10-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-20T16:09:20.210Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="spring">
+<meta property="article:tag" content="spring boot">
+<meta property="article:tag" content="aop">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2017/10/28/spirng-boot-aop/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Spring Boot配置AOP实践 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/10/28/spirng-boot-aop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring Boot配置AOP实践
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-10-28 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-28T00:00:00+08:00">2017-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-11-21 00:09:20" itemprop="dateModified" datetime="2022-11-21T00:09:20+08:00">2022-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="关于AOP"><a href="#关于AOP" class="headerlink" title="关于AOP"></a>关于AOP</h1><h2 id="AOP的应用场景"><a href="#AOP的应用场景" class="headerlink" title="AOP的应用场景"></a>AOP的应用场景</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;在许多系统中都会有一些公共的行为或者逻辑，如果分散在各处一则重复代码很不优美，二则会给修改维护带来一些问题。将这些公共的行为抽离出来作为单独的可重用组件供需要的其他组件进行调用可以很有效地解决上述问题，而抽离出来的组件就是一个切面（<code>Aspect</code>）。</p>
+<span id="more"></span>
+<h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><ol>
+<li>通知（增强）Advice<ul>
+<li>定义了切面的行为逻辑以及它什么时候使用。比如在切点之前、之后、抛出异常时。</li>
+<li>通知的类型：<blockquote>
+<ol>
+<li>Before：前置通知，在切点之前调用通知（执行通知定义的行为）</li>
+<li>After：后置最终通知，在切点之后调用通知，无论切点所对应的方法执行成功与否</li>
+<li>After-returning：后置返回通知，在切点对应方法执行成功之后调用通知</li>
+<li>After-throwing：后置异常通知，在切点指定方法抛出异常后进行通知</li>
+<li>Around：环绕通知，通知包裹了被通知的切点方法，在被通知的方法调用之前和调用之后执行自定义的行为</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>连接点 Join point<ul>
+<li>连接点是在应用执行过程中能够插入切面的点。</li>
+<li>连接点是切面的调用者。</li>
+<li>切面在连接点处插入到运行流程当中。</li>
+</ul>
+</li>
+<li>切点 Pointcut<ul>
+<li>切点用于确定通知执行的时间，也就是通知与连接点的关系，如指定某些方法（连接点）为通知所匹配的切点，则该通知就围绕这些方法执行。</li>
+<li>切点会匹配通知所要织入的一个或者多个连接点。</li>
+<li></li>
+</ul>
+</li>
+<li>切面 Aspect<ul>
+<li>切面是通知和切点的集合，通知和切点共同定义了切面的全部功能。</li>
+<li>可以理解为包含切点和通知的类。</li>
+</ul>
+</li>
+<li>引入 Introduction<ul>
+<li>引入允许我们向现有的类中添加方法或属性。</li>
+</ul>
+</li>
+<li>织入 Weave<ul>
+<li>织入是将切面应用到目标对象来创建的代理对象过程。</li>
+<li>切面在指定的连接点被织入到目标对象中，在目标对象的生命周期中有多个点可以织入:<blockquote>
+<ol>
+<li>编译期——切面在目标类编译时期被织入，这种方式需要特殊编译器。AspectJ的织入编译器就是以这种方式织入切面。</li>
+<li>类加载期——切面在类加载到JVM ，这种方式需要特殊的类加载器，他可以在目标类被引入应用之前增强该目标类的字节码。AspectJ5 的 LTW 就支持这种织入方式</li>
+<li>运行期——切面在应用运行期间的某个时刻被织入。一般情况下，在织入切面时候，AOP 容器会为目标对象动态的创建代理对象。Spring AOP 就是以这种方式织入切面。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>代理 Proxy<ul>
+<li>实现AOP所使用的机制，可以分为动态代理和静态代理。</li>
+</ul>
+</li>
+<li>横切关注点 Cross-cuting Concerns<ul>
+<li>即影响应用多处的功能，如安全、事务、日志等，将这些横切关注点抽离出来变成公共的组件就得到切面。</li>
+</ul>
+</li>
+</ol>
+<h2 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h2><p>spring中使用动态代理实现AOP。</p>
+<h1 id="spring-boot中aop的配置"><a href="#spring-boot中aop的配置" class="headerlink" title="spring boot中aop的配置"></a>spring boot中aop的配置</h1><h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><p>如果使用 <code>maven</code> 在 <code>dependencies</code> 中添加文件依赖即可，其他请自行修改。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<h2 id="建立一个切面"><a href="#建立一个切面" class="headerlink" title="建立一个切面"></a>建立一个切面</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>  </span><br><span class="line"><span class="meta">@Aspect</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestAop</span> &#123;  </span><br><span class="line">  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h2 id="创建切点"><a href="#创建切点" class="headerlink" title="创建切点"></a>创建切点</h2><p>在 <code>TestAop</code> 中建立切点方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pointcut(&quot;execution(* com.aak1247.testaop.controller..*.*(..))&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">executeService</span><span class="params">()</span>&#123;  </span><br><span class="line">  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>这个切点匹配 <code>com.aak1247.testaop.controller</code> 包下的所有类的所有方法（作为连接点）。</p>
+<h2 id="创建通知"><a href="#创建通知" class="headerlink" title="创建通知"></a>创建通知</h2><p>在 <code>TestAop</code> 中建立通知方法，这里以前置通知（@Before）为例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before(&quot;executeService()&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doBeforeAdvice</span><span class="params">(JoinPoint joinPoint)</span>&#123;  </span><br><span class="line">    System.out.println(<span class="string">&quot;调用前置通知&quot;</span>);    </span><br><span class="line">    Object[] obj = joinPoint.getArgs();  <span class="comment">//获取目标方法的参数信息</span></span><br><span class="line">    joinPoint.getThis();      <span class="comment">//AOP代理类的信息 </span></span><br><span class="line">    joinPoint.getTarget();      <span class="comment">//代理的目标对象  </span></span><br><span class="line">    <span class="type">Signature</span> <span class="variable">signature</span> <span class="operator">=</span> joinPoint.getSignature();      <span class="comment">//通知的签名  </span></span><br><span class="line">    System.out.println(signature.getName());      <span class="comment">//代理的方法名</span></span><br><span class="line">    System.out.println(signature.getDeclaringTypeName());  <span class="comment">//AOP代理类名字  </span></span><br><span class="line">    System.out.println(signature.getDeclaringType());      <span class="comment">//AOP代理类的类（class）信息  </span></span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果是后置最终通知，其参数与前置通知相同。</li>
+<li>而后置返回通知的参数可以为 <code>JointPoint</code> 和返回对象，也可以仅仅为返回对象，如<code>Object para</code>。</li>
+<li>后置异常通知的参数类型为<code>JointPoint</code>和<code>Throwable</code>。</li>
+<li>环绕通知必须包含一个<code>org.aspectj.lang.ProceedingJoinPoint</code>类型参数。</li>
+</ul>
+<blockquote>
+<p>在web环境下可以通过<code>RequestContextHolder</code>获取请求信息。</p>
+</blockquote>
+<h2 id="创建连接点"><a href="#创建连接点" class="headerlink" title="创建连接点"></a>创建连接点</h2><p>在<code>com.aak1247.testaop.controller</code>包下建立类和方法，作为前置通知的连接点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> Class testController&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/test&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">testBeforeService</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;test controller&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>emmmm….结果自测好伐？</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="AspectJ风格的切点表达式"><a href="#AspectJ风格的切点表达式" class="headerlink" title="AspectJ风格的切点表达式"></a><code>AspectJ</code>风格的切点表达式</h2><p>应该注意到，在<code>@Pointcut(&quot;execution&quot;)</code>注解中，括号里的内容可以通过一个模式匹配多个方法（连接点）。</p>
+<p><code>@Pointcut(&quot;exexution(a b.c(..))&quot;)</code></p>
+<ul>
+<li>a 确定了匹配到的方法的类型（public/private/protected/*）</li>
+<li>b 确定包名和类名，（可以是接口名），可以是包含通配符<code>*</code>的模式</li>
+<li>c 确定了方法名，可以是包含通配符<code>*</code>的模式</li>
+<li>一个比较特殊的用法，比如如果指定c为<code>*</code>，而b为一个接口，就可以匹配实现了接口方法的所有方法</li>
+</ul>
+<blockquote>
+<p>除此之外，<code>within</code>，<code>target</code>，<code>args</code>等注解也可以用来匹配连接点。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/spring/" rel="tag"># spring</a>
+              <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
+              <a href="/tags/aop/" rel="tag"># aop</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/08/24/python-scrapy-path/" rel="prev" title="爬虫要学的内容">
+      <i class="fa fa-chevron-left"></i> 爬虫要学的内容
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/12/10/js-download-blob/" rel="next" title="使用js进行文件下载的方法">
+      使用js进行文件下载的方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EAOP"><span class="nav-number">1.</span> <span class="nav-text">关于AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">AOP的应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">一些概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">原理简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spring-boot%E4%B8%ADaop%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">spring boot中aop的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">2.1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E5%88%87%E9%9D%A2"><span class="nav-number">2.2.</span> <span class="nav-text">建立一个切面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%88%87%E7%82%B9"><span class="nav-number">2.3.</span> <span class="nav-text">创建切点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%80%9A%E7%9F%A5"><span class="nav-number">2.4.</span> <span class="nav-text">创建通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%BF%9E%E6%8E%A5%E7%82%B9"><span class="nav-number">2.5.</span> <span class="nav-text">创建连接点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AspectJ%E9%A3%8E%E6%A0%BC%E7%9A%84%E5%88%87%E7%82%B9%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">AspectJ风格的切点表达式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
