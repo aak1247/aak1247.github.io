@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.aak1247.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.aak1247.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;有一种遍地是坑的感觉，还是too young ，hexo官方提供的错误文档提供了一些提示，不过没有提供错误的log很难定位属于哪一种。遇到过的错误如下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo部署中遇到的一些问题">
 <meta property="og:url" content="https://www.aak1247.cn/hexo-problems.html">
-<meta property="og:site_name" content="黑境空间站">
+<meta property="og:site_name" content="黑境站">
 <meta property="og:description" content="&nbsp;&nbsp;&nbsp;&nbsp;有一种遍地是坑的感觉，还是too young ，hexo官方提供的错误文档提供了一些提示，不过没有提供错误的log很难定位属于哪一种。遇到过的错误如下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-01-21T16:00:00.000Z">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>hexo部署中遇到的一些问题 | 黑境空间站</title>
+  <title>hexo部署中遇到的一些问题 | 黑境站</title>
   
 
 
@@ -99,7 +99,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">黑境空间站</h1>
+      <h1 class="site-title">黑境站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">aak1247的博客</p>
@@ -128,27 +128,22 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
 
   </li>
-        <li class="menu-item menu-item-sitemap">
+        <li class="menu-item menu-item-works">
 
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+    <a href="/works" rel="section"><i class="fa fa-home fa-fw"></i>作品</a>
 
   </li>
   </ul>
@@ -188,7 +183,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑境空间站">
+      <meta itemprop="name" content="黑境站">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -232,7 +227,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;有一种遍地是坑的感觉，还是<code>too young</code> ，hexo官方提供的<a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">错误文档</a>提供了一些提示，不过没有提供错误的log很难定位属于哪一种。遇到过的错误如下<br><a id="more"></a></p><h3 id="配置文件缺少逗号"><a href="#配置文件缺少逗号" class="headerlink" title="配置文件缺少逗号"></a>配置文件缺少逗号</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;报错信息如下：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FATAL missed comma between flow collection entries at line 33, column 11:</span><br><span class="line"></span><br><span class="line">              <span class="string">"fields"</span>: [</span><br><span class="line"></span><br><span class="line">              ^</span><br><span class="line"></span><br><span class="line">YAMLException: missed comma between flow collection entries at line 33, column 11:</span><br><span class="line"></span><br><span class="line">              <span class="string">"fields"</span>: [</span><br><span class="line"></span><br><span class="line">              ^</span><br></pre></td></tr></table></figure><p>&nbsp;&nbsp;&nbsp;&nbsp;yaml文件语言要求在每一个冒号后面追加一个空格，这也是一种良好地代码风格。</p><h3 id="配置文件缺少空格"><a href="#配置文件缺少空格" class="headerlink" title="配置文件缺少空格"></a>配置文件缺少空格</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;报错信息如下：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YAMLException: end of the stream or a document separator is expected at line x, column y:</span><br></pre></td></tr></table></figure><h3 id="渲染器的bug"><a href="#渲染器的bug" class="headerlink" title="渲染器的bug"></a>渲染器的bug</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;如下符合swig/nunjucks语法的代码：</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; xxx &#125;&#125;</span><br><span class="line">&#123;% xxx %&#125;</span><br></pre></td></tr></table></figure><p>&nbsp;&nbsp;&nbsp;&nbsp;可能会引发报错。如果写在块儿级代码块儿中没有问题，但是如果写在行内代码中``之间`` 就可能引发报错，报错信息如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br><span class="line">Template render error: (unknown path) [Line 7, Column 23]</span><br></pre></td></tr></table></figure><p>或</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br><span class="line">Template render error: (unknown path)</span><br></pre></td></tr></table></figure><p>&nbsp;&nbsp;&nbsp;&nbsp;可以将语句写在块儿级代码中，因为hexo不会渲染&lt;pre&gt;与&lt;/pre&gt;之间的内容，markdown的块儿级代码被解析为:</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">	......</span><br><span class="line">	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure><p>&nbsp;&nbsp;&nbsp;&nbsp;也可以通过利用nunjucks的raw标签进行屏蔽。</p><h3 id="markdown文件书写不规范"><a href="#markdown文件书写不规范" class="headerlink" title="markdown文件书写不规范"></a>markdown文件书写不规范</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;hexo所采用的markdown渲染器要求markdown文件标签前缀与内容之间间隔一个半角空格，如果不符合此规范可能会无法渲染。如标题显示###标题而不是格式化的标题。添加一个空格即可。</p><h3 id="https与http混合问题"><a href="#https与http混合问题" class="headerlink" title="https与http混合问题"></a>https与http混合问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;HTTPS是使用SSL的安全传输协议，自然对于页面中使用HTTP协议传输的内容存在一些限制。如果在https页面中使用http资源就可能导致资源加载异常。主要的异常有以下几种：</p><ol><li>js和flash资源： 直接被浏览器屏蔽</li><li>其他页面资源： 弹出提示框询问是否加载或屏蔽</li></ol><p>&nbsp;&nbsp;&nbsp;&nbsp;当然，也有正常加载的情况。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;对于HTTPS页面中的HTTP资源，可以使用以下两种方式进行加载，避免可能出现的加载异常问题。</p><h4 id="使用iframe进行加载"><a href="#使用iframe进行加载" class="headerlink" title="使用iframe进行加载"></a>使用iframe进行加载</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;浏览器会阻止https页面中直接请求http资源，但是如果是在HTTPS页面中嵌入的iframe中请求就不再有问题了，可以通过一个不显示的iframe完成对http资源的请求，这样就绕过了浏览器对https页面中http请求的屏蔽。</p><h4 id="使用相对协议加载"><a href="#使用相对协议加载" class="headerlink" title="使用相对协议加载"></a>使用相对协议加载</h4><h5 id="相对协议"><a href="#相对协议" class="headerlink" title="相对协议"></a>相对协议</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;相对协议简言之就是省略掉协议类型而直接写链接路径的请求方式，例如<code>&lt;img src=&quot;//baidu.com.gif&quot;&gt;</code>, 浏览器会根据页面类型请求资源，例如在HTTPS页面中就使用HTTPS协议的方式请求资源。css文件也可以使用此方式。</p><blockquote><p>注意：&lt;link&gt; 或 @import 引入样式表时使用相对协议，IE7、IE8会下载文件两次</p></blockquote><p>&nbsp;&nbsp;&nbsp;&nbsp;另外，在github page中使用不支持https的资源，如果采用相对协议可能会导致加载异常缓慢，对于一部分资源（图片等）可以采用http的方式加载，当然更好的方式是采用本地文件进行加载，或者单独建立用于存储静态文件的repo。另外github其实还有一个存储其他文件的服务器，也可以将文件放在issue中通过链接访问。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;有一种遍地是坑的感觉，还是<code>too young</code> ，hexo官方提供的<a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">错误文档</a>提供了一些提示，不过没有提供错误的log很难定位属于哪一种。遇到过的错误如下</p>
+<span id="more"></span>
+<h3 id="配置文件缺少逗号"><a href="#配置文件缺少逗号" class="headerlink" title="配置文件缺少逗号"></a>配置文件缺少逗号</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;报错信息如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FATAL missed comma between flow collection entries at line 33, column 11:</span><br><span class="line"></span><br><span class="line">              <span class="string">&quot;fields&quot;</span>: [</span><br><span class="line"></span><br><span class="line">              ^</span><br><span class="line"></span><br><span class="line">YAMLException: missed comma between flow collection entries at line 33, column 11:</span><br><span class="line"></span><br><span class="line">              <span class="string">&quot;fields&quot;</span>: [</span><br><span class="line"></span><br><span class="line">              ^</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;yaml文件语言要求在每一个冒号后面追加一个空格，这也是一种良好地代码风格。</p>
+<h3 id="配置文件缺少空格"><a href="#配置文件缺少空格" class="headerlink" title="配置文件缺少空格"></a>配置文件缺少空格</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;报错信息如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YAMLException: end of the stream or a document separator is expected at line x, column y:</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="渲染器的bug"><a href="#渲染器的bug" class="headerlink" title="渲染器的bug"></a>渲染器的bug</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;如下符合swig&#x2F;nunjucks语法的代码：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; xxx &#125;&#125;</span><br><span class="line">&#123;% xxx %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;可能会引发报错。如果写在块儿级代码块儿中没有问题，但是如果写在行内代码中``之间``  就可能引发报错，报错信息如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br><span class="line">Template render error: (unknown path) [Line 7, Column 23]</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br><span class="line">Template render error: (unknown path)</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;可以将语句写在块儿级代码中，因为hexo不会渲染&lt;pre&gt;与&lt;&#x2F;pre&gt;之间的内容，markdown的块儿级代码被解析为:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">	......</span><br><span class="line">	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;也可以通过利用nunjucks的raw标签进行屏蔽。</p>
+<h3 id="markdown文件书写不规范"><a href="#markdown文件书写不规范" class="headerlink" title="markdown文件书写不规范"></a>markdown文件书写不规范</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;hexo所采用的markdown渲染器要求markdown文件标签前缀与内容之间间隔一个半角空格，如果不符合此规范可能会无法渲染。如标题显示###标题而不是格式化的标题。添加一个空格即可。</p>
+<h3 id="https与http混合问题"><a href="#https与http混合问题" class="headerlink" title="https与http混合问题"></a>https与http混合问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;HTTPS是使用SSL的安全传输协议，自然对于页面中使用HTTP协议传输的内容存在一些限制。如果在https页面中使用http资源就可能导致资源加载异常。主要的异常有以下几种：</p>
+<ol>
+<li>js和flash资源： 直接被浏览器屏蔽</li>
+<li>其他页面资源： 弹出提示框询问是否加载或屏蔽</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;当然，也有正常加载的情况。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;对于HTTPS页面中的HTTP资源，可以使用以下两种方式进行加载，避免可能出现的加载异常问题。</p>
+<h4 id="使用iframe进行加载"><a href="#使用iframe进行加载" class="headerlink" title="使用iframe进行加载"></a>使用iframe进行加载</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;浏览器会阻止https页面中直接请求http资源，但是如果是在HTTPS页面中嵌入的iframe中请求就不再有问题了，可以通过一个不显示的iframe完成对http资源的请求，这样就绕过了浏览器对https页面中http请求的屏蔽。</p>
+<h4 id="使用相对协议加载"><a href="#使用相对协议加载" class="headerlink" title="使用相对协议加载"></a>使用相对协议加载</h4><h5 id="相对协议"><a href="#相对协议" class="headerlink" title="相对协议"></a>相对协议</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;相对协议简言之就是省略掉协议类型而直接写链接路径的请求方式，例如<code>&lt;img src=&quot;//baidu.com.gif&quot;&gt;</code>, 浏览器会根据页面类型请求资源，例如在HTTPS页面中就使用HTTPS协议的方式请求资源。css文件也可以使用此方式。</p>
+<blockquote>
+<p>注意：&lt;link&gt; 或 @import 引入样式表时使用相对协议，IE7、IE8会下载文件两次</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;另外，在github page中使用不支持https的资源，如果采用相对协议可能会导致加载异常缓慢，对于一部分资源（图片等）可以采用http的方式加载，当然更好的方式是采用本地文件进行加载，或者单独建立用于存储静态文件的repo。另外github其实还有一个存储其他文件的服务器，也可以将文件放在issue中通过链接访问。</p>
+
     </div>
 
     
@@ -252,12 +284,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/hexo-next-3.html" rel="prev" title="如何使hexo显得自己更有逼格（三）——自定义与优化">
-      <i class="fa fa-chevron-left"></i> 如何使hexo显得自己更有逼格（三）——自定义与优化
+    <a href="/hexo-next-2.html" rel="prev" title="如何使hexo显得自己更有逼格（二）——功能补充">
+      <i class="fa fa-chevron-left"></i> 如何使hexo显得自己更有逼格（二）——功能补充
     </a></div>
       <div class="post-nav-item">
-    <a href="/plan-20170125.html" rel="next" title="2017寒假计划">
-      2017寒假计划 <i class="fa fa-chevron-right"></i>
+    <a href="/hexo-next-3.html" rel="next" title="如何使hexo显得自己更有逼格（三）——自定义与优化">
+      如何使hexo显得自己更有逼格（三）——自定义与优化 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -323,6 +355,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">aak1247</p>
   <div class="site-description" itemprop="description">Still waters run deep</div>
 </div>
@@ -331,7 +365,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -344,7 +378,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

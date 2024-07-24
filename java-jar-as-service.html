@@ -17,21 +17,21 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.aak1247.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.aak1247.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：1. 随时控制程序运行、重启； 2. 方便开机自启动； 3. 启动命令更方便。 systemd 和 init">
+  <meta name="description" content="在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：    1. 随时控制程序运行、重启；    2. 方便开机自启动；    3. 启动命令更方便。 systemd 和 init">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu 服务脚本编写">
 <meta property="og:url" content="https://www.aak1247.cn/java-jar-as-service.html">
-<meta property="og:site_name" content="黑境空间站">
-<meta property="og:description" content="在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：1. 随时控制程序运行、重启； 2. 方便开机自启动； 3. 启动命令更方便。 systemd 和 init">
+<meta property="og:site_name" content="黑境站">
+<meta property="og:description" content="在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：    1. 随时控制程序运行、重启；    2. 方便开机自启动；    3. 启动命令更方便。 systemd 和 init">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-07-28T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-09-06T15:20:00.051Z">
 <meta property="article:author" content="aak1247">
-<meta property="article:tag" content="java">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="java">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>ubuntu 服务脚本编写 | 黑境空间站</title>
+  <title>ubuntu 服务脚本编写 | 黑境站</title>
   
 
 
@@ -99,7 +99,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">黑境空间站</h1>
+      <h1 class="site-title">黑境站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">aak1247的博客</p>
@@ -128,27 +128,22 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
 
   </li>
-        <li class="menu-item menu-item-sitemap">
+        <li class="menu-item menu-item-works">
 
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+    <a href="/works" rel="section"><i class="fa fa-home fa-fw"></i>作品</a>
 
   </li>
   </ul>
@@ -188,7 +183,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑境空间站">
+      <meta itemprop="name" content="黑境站">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -232,10 +227,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：</p><pre><code>1. 随时控制程序运行、重启；
-2. 方便开机自启动；
-3. 启动命令更方便。
-</code></pre><h1 id="systemd-和-init"><a href="#systemd-和-init" class="headerlink" title="systemd 和 init"></a>systemd 和 init</h1><a id="more"></a><p>init是一个由内核启动的用户级进程。</p><p>内核自行启动（已经被载入内存，开始运行，并已初始化所有的设备驱动程序和数据结构等）之后，就通过启动一个用户级程序init的方式，完成引导进程。所以,init始终是第一个进程（其进程编号始终为1）。<br>init进程作为服务的启动进程由来已久，但是其存在启动较慢、编写复杂的问题。</p><p>Systemd 就是为了解决这些问题而诞生的。它的设计目标是，为系统的启动和管理提供一套完整的解决方案。</p><p>Systemd 并不是一个命令，而是一组命令，涉及到系统管理的方方面面，对于其命令，这里不作过多介绍。在一些比较新版本的Linux中，systemd 取代了init，其进程编号为1，故服务的启动也是通过<code>systemd</code>进行管理。<br>可以使用<code>systemctl --version</code>命令查看<code>systemd</code>的版本。</p><h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><ol><li>配置服务启动脚本</li><li>配置命令处理脚本</li><li>开机自启</li></ol><h1 id="配置服务启动脚本"><a href="#配置服务启动脚本" class="headerlink" title="配置服务启动脚本"></a>配置服务启动脚本</h1><p>ubuntu LTS 16.04的服务依赖于<code>systemd</code>的服务管理。<br>听说，<code>systemd</code>的配置位于<code>/usr/lib/systemd/system</code>目录下。但是在ubuntu 16.04中，服务的目录为<code>/lib/systemd/system</code>,要建立一个名为<code>hello</code>的服务，就在此目录下添加一个文件名为<code>hello.service</code>的文件即可。其内容包含：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=xxxxxxxxxxxxxxxx #描述服务 </span><br><span class="line">After=network.target #用于指定服务启动的前置条件</span><br><span class="line">Documentation=  #帮助文件的地址如http://baidu.com/ ，可缺省</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="meta">#</span><span class="bash"> User=  启动用户  </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Group=  启动用户组</span></span><br><span class="line">ExecStart=  #服务启动命令，此项必填</span><br><span class="line"><span class="meta">#</span><span class="bash"> ExecStop=  服务终止命令，可缺省</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Recommended limits <span class="keyword">for</span> <span class="keyword">for</span> mongod as specified <span class="keyword">in</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://docs.mongodb.org/manual/reference/<span class="built_in">ulimit</span>/<span class="comment">#recommended-settings</span></span></span><br><span class="line"></span><br><span class="line">[Install] #用来定义如何启动，以及是否开机启动。</span><br><span class="line">WantedBy=multi-user.target #当服务开机启动后，会放入什么文件夹，影响启动顺序</span><br></pre></td></tr></table></figure><h2 id="举一个例子-java-web服务器"><a href="#举一个例子-java-web服务器" class="headerlink" title="举一个例子: java web服务器"></a>举一个例子: java web服务器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=A java server</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/bin/java -jar hello.jar</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> file size</span></span><br><span class="line">LimitFSIZE=infinity</span><br><span class="line"><span class="meta">#</span><span class="bash"> cpu time</span></span><br><span class="line">LimitCPU=infinity</span><br><span class="line"><span class="meta">#</span><span class="bash"> virtual memory size</span></span><br><span class="line">LimitAS=infinity</span><br><span class="line"><span class="meta">#</span><span class="bash"> open files</span></span><br><span class="line">LimitNOFILE=64000</span><br><span class="line"><span class="meta">#</span><span class="bash"> processes/threads</span></span><br><span class="line">LimitNPROC=64000</span><br><span class="line"><span class="meta">#</span><span class="bash"> total threads (user+kernel)</span></span><br><span class="line">TasksMax=infinity</span><br><span class="line">TasksAccounting=false</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure><p>需要注意的是， 服务启动命令需要输入绝对路径的形式，因为在服务启动时，可能相关的环境变量还未加载。</p><p>在<code>/lib/systemd/system</code>路径下添加此文件并保存为<code>hello.service</code>后，就可以通过<code>service hello start</code>命令启动服务了。</p><p>可以通过<code>systemctl status hello.service</code>命令查看服务状态。</p><h2 id="更详细的设定"><a href="#更详细的设定" class="headerlink" title="更详细的设定"></a>更详细的设定</h2><p>[Unit]区块通常是配置文件的第一个区块，用来定义 Unit(在这里就是服务) 的元数据，以及配置与其他 Unit 的关系。它的主要字段如下。</p><pre><code>Description：简短描述
+        <p>在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：<br>    1. 随时控制程序运行、重启；<br>    2. 方便开机自启动；<br>    3. 启动命令更方便。</p>
+<h1 id="systemd-和-init"><a href="#systemd-和-init" class="headerlink" title="systemd 和 init"></a>systemd 和 init</h1><span id="more"></span>
+<p>init是一个由内核启动的用户级进程。 </p>
+<p>内核自行启动（已经被载入内存，开始运行，并已初始化所有的设备驱动程序和数据结构等）之后，就通过启动一个用户级程序init的方式，完成引导进程。所以,init始终是第一个进程（其进程编号始终为1）。<br>init进程作为服务的启动进程由来已久，但是其存在启动较慢、编写复杂的问题。</p>
+<p>Systemd 就是为了解决这些问题而诞生的。它的设计目标是，为系统的启动和管理提供一套完整的解决方案。</p>
+<p>Systemd 并不是一个命令，而是一组命令，涉及到系统管理的方方面面，对于其命令，这里不作过多介绍。在一些比较新版本的Linux中，systemd 取代了init，其进程编号为1，故服务的启动也是通过<code>systemd</code>进行管理。<br>可以使用<code>systemctl --version</code>命令查看<code>systemd</code>的版本。</p>
+<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><ol>
+<li>配置服务启动脚本</li>
+<li>配置命令处理脚本</li>
+<li>开机自启</li>
+</ol>
+<h1 id="配置服务启动脚本"><a href="#配置服务启动脚本" class="headerlink" title="配置服务启动脚本"></a>配置服务启动脚本</h1><p>ubuntu LTS 16.04的服务依赖于<code>systemd</code>的服务管理。<br>听说，<code>systemd</code>的配置位于<code>/usr/lib/systemd/system</code>目录下。但是在ubuntu 16.04中，服务的目录为<code>/lib/systemd/system</code>,要建立一个名为<code>hello</code>的服务，就在此目录下添加一个文件名为<code>hello.service</code>的文件即可。其内容包含：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=xxxxxxxxxxxxxxxx #描述服务 </span><br><span class="line">After=network.target #用于指定服务启动的前置条件</span><br><span class="line">Documentation=  #帮助文件的地址如http://baidu.com/ ，可缺省</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">User=  启动用户</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Group=  启动用户组</span></span><br><span class="line">ExecStart=  #服务启动命令，此项必填</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ExecStop=  服务终止命令，可缺省</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Recommended limits <span class="keyword">for</span> <span class="keyword">for</span> mongod as specified <span class="keyword">in</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">http://docs.mongodb.org/manual/reference/ulimit/#recommended-settings</span></span><br><span class="line"></span><br><span class="line">[Install] #用来定义如何启动，以及是否开机启动。</span><br><span class="line">WantedBy=multi-user.target #当服务开机启动后，会放入什么文件夹，影响启动顺序</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="举一个例子-java-web服务器"><a href="#举一个例子-java-web服务器" class="headerlink" title="举一个例子: java web服务器"></a>举一个例子: java web服务器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=A java server</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/bin/java -jar hello.jar</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">file size</span></span><br><span class="line">LimitFSIZE=infinity</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">cpu time</span></span><br><span class="line">LimitCPU=infinity</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">virtual memory size</span></span><br><span class="line">LimitAS=infinity</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">open files</span></span><br><span class="line">LimitNOFILE=64000</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">processes/threads</span></span><br><span class="line">LimitNPROC=64000</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">total threads (user+kernel)</span></span><br><span class="line">TasksMax=infinity</span><br><span class="line">TasksAccounting=false</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是， 服务启动命令需要输入绝对路径的形式，因为在服务启动时，可能相关的环境变量还未加载。</p>
+<p>在<code>/lib/systemd/system</code>路径下添加此文件并保存为<code>hello.service</code>后，就可以通过<code>service hello start</code>命令启动服务了。</p>
+<p>可以通过<code>systemctl status hello.service</code>命令查看服务状态。</p>
+<h2 id="更详细的设定"><a href="#更详细的设定" class="headerlink" title="更详细的设定"></a>更详细的设定</h2><p>[Unit]区块通常是配置文件的第一个区块，用来定义 Unit(在这里就是服务) 的元数据，以及配置与其他 Unit 的关系。它的主要字段如下。</p>
+<pre><code>Description：简短描述
 Documentation：文档地址
 Requires：当前 Unit 依赖的其他 Unit，如果它们没有运行，当前 Unit 会启动失败
 Wants：与当前 Unit 配合的其他 Unit，如果它们没有运行，当前 Unit 不会启动失败
@@ -245,7 +258,9 @@ After：如果该字段指定的 Unit 也要启动，那么必须在当前 Unit 
 Conflicts：这里指定的 Unit 不能与当前 Unit 同时运行
 Condition...：当前 Unit 运行必须满足的条件，否则不会运行
 Assert...：当前 Unit 运行必须满足的条件，否则会报启动失败
-</code></pre><p>[Service]区块用来 Service 的配置，只有 Service 类型的 Unit 才有这个区块。它的主要字段如下。</p><pre><code>Type：定义启动时的进程行为。它有以下几种值。
+</code></pre>
+<p>[Service]区块用来 Service 的配置，只有 Service 类型的 Unit 才有这个区块。它的主要字段如下。</p>
+<pre><code>Type：定义启动时的进程行为。它有以下几种值。
 Type=simple：默认值，执行ExecStart指定的命令，启动主进程
 Type=forking：以 fork 方式从父进程创建子进程，创建后父进程会立即退出
 Type=oneshot：一次性进程，Systemd 会等当前服务退出，再继续往下执行
@@ -262,11 +277,21 @@ RestartSec：自动重启当前服务间隔的秒数
 Restart：定义何种情况 Systemd 会自动重启当前服务，可能的值包括always（总是重启）、on-success、on-failure、on-abnormal、on-abort、on-watchdog
 TimeoutSec：定义 Systemd 停止当前服务之前等待的秒数
 Environment：指定环境变量
-</code></pre><p>[Install]通常是配置文件的最后一个区块，用来定义如何启动，以及是否开机启动。它的主要字段如下。</p><pre><code>WantedBy：它的值是一个或多个 Target，当前 Unit 激活时（enable）符号链接会放入/etc/systemd/system目录下面以 Target 名 + .wants后缀构成的子目录中
+</code></pre>
+<p>[Install]通常是配置文件的最后一个区块，用来定义如何启动，以及是否开机启动。它的主要字段如下。</p>
+<pre><code>WantedBy：它的值是一个或多个 Target，当前 Unit 激活时（enable）符号链接会放入/etc/systemd/system目录下面以 Target 名 + .wants后缀构成的子目录中
 RequiredBy：它的值是一个或多个 Target，当前 Unit 激活时，符号链接会放入/etc/systemd/system目录下面以 Target 名 + .required后缀构成的子目录中
 Alias：当前 Unit 可用于启动的别名
 Also：当前 Unit 激活（enable）时，会被同时激活的其他 Unit
-</code></pre><p>完整配置可以查看<br><a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html" target="_blank" rel="noopener">官方文档</a></p><h1 id="配置其他命令处理脚本"><a href="#配置其他命令处理脚本" class="headerlink" title="配置其他命令处理脚本"></a>配置其他命令处理脚本</h1><p>其他命令的处理与旧版本的ubuntu类似，脚本位于<code>/etc/init.d/</code>路径下，如<code>hello</code>服务，其脚本应保存为<code>hello</code>或<code>hello.sh</code>。编写脚本处理命令即可。</p><h1 id="举一个栗子"><a href="#举一个栗子" class="headerlink" title="举一个栗子"></a>举一个栗子</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> !/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> chkconfig - 85 15</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> description: hello service</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> processname: hello</span></span><br><span class="line"></span><br><span class="line">case "$1" in</span><br><span class="line">        bye)</span><br><span class="line">                echo "bye"</span><br><span class="line">                exit 0</span><br><span class="line">        ;;</span><br><span class="line">        hello)</span><br><span class="line">                echo "hello"</span><br><span class="line">                java -jar hello.jar&amp;</span><br><span class="line">                exit 0</span><br><span class="line">        ;;</span><br><span class="line">        *)</span><br><span class="line">                echo "不存在的"</span><br><span class="line">        ;;</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure><h1 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h1><p>要使得服务自启动，输入</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable hello.service</span><br></pre></td></tr></table></figure><p>即可，关闭自启动输入<br></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable hello.service</span><br></pre></td></tr></table></figure><p></p>
+</code></pre>
+<p>完整配置可以查看<br><a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html">官方文档</a></p>
+<h1 id="配置其他命令处理脚本"><a href="#配置其他命令处理脚本" class="headerlink" title="配置其他命令处理脚本"></a>配置其他命令处理脚本</h1><p>其他命令的处理与旧版本的ubuntu类似，脚本位于<code>/etc/init.d/</code>路径下，如<code>hello</code>服务，其脚本应保存为<code>hello</code>或<code>hello.sh</code>。编写脚本处理命令即可。</p>
+<h1 id="举一个栗子"><a href="#举一个栗子" class="headerlink" title="举一个栗子"></a>举一个栗子</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">chkconfig - 85 15</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">description: hello service</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">processname: hello</span></span><br><span class="line"></span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">        bye)</span><br><span class="line">                echo &quot;bye&quot;</span><br><span class="line">                exit 0</span><br><span class="line">        ;;</span><br><span class="line">        hello)</span><br><span class="line">                echo &quot;hello&quot;</span><br><span class="line">                java -jar hello.jar&amp;</span><br><span class="line">                exit 0</span><br><span class="line">        ;;</span><br><span class="line">        *)</span><br><span class="line">                echo &quot;不存在的&quot;</span><br><span class="line">        ;;</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+<h1 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h1><p>要使得服务自启动，输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable hello.service</span><br></pre></td></tr></table></figure>
+<p>即可，关闭自启动输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable hello.service</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -275,8 +300,8 @@ Also：当前 Unit 激活（enable）时，会被同时激活的其他 Unit
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/java/" rel="tag"># java</a>
               <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/java/" rel="tag"># java</a>
               <a href="/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
@@ -357,6 +382,8 @@ Also：当前 Unit 激活（enable）时，会被同时激活的其他 Unit
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">aak1247</p>
   <div class="site-description" itemprop="description">Still waters run deep</div>
 </div>
@@ -365,7 +392,7 @@ Also：当前 Unit 激活（enable）时，会被同时激活的其他 Unit
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -378,7 +405,7 @@ Also：当前 Unit 激活（enable）时，会被同时激活的其他 Unit
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

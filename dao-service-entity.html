@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.aak1247.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.aak1247.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="SSH框架的分层&nbsp;&nbsp;&nbsp;&nbsp;学完了SSH框架，尽管还是不断地踩坑，但是对于整体的设计模式有了一定的了解。从作用上来说spring框架是一个Java的对象管理框架, 其主要作用是提供对象从创建到销毁的一套关系；而hibernate则是将数据库对象转化为Java对象的持久层和数据层框架，是对CRUD操作的一层封装。而spring MVC或Struts则是一个MVC的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于SSH架构中Entity&#x2F;Dao&#x2F;Service&#x2F;Controller的理解">
 <meta property="og:url" content="https://www.aak1247.cn/dao-service-entity.html">
-<meta property="og:site_name" content="黑境空间站">
+<meta property="og:site_name" content="黑境站">
 <meta property="og:description" content="SSH框架的分层&nbsp;&nbsp;&nbsp;&nbsp;学完了SSH框架，尽管还是不断地踩坑，但是对于整体的设计模式有了一定的了解。从作用上来说spring框架是一个Java的对象管理框架, 其主要作用是提供对象从创建到销毁的一套关系；而hibernate则是将数据库对象转化为Java对象的持久层和数据层框架，是对CRUD操作的一层封装。而spring MVC或Struts则是一个MVC的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-02-23T16:00:00.000Z">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>关于SSH架构中Entity/Dao/Service/Controller的理解 | 黑境空间站</title>
+  <title>关于SSH架构中Entity/Dao/Service/Controller的理解 | 黑境站</title>
   
 
 
@@ -99,7 +99,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">黑境空间站</h1>
+      <h1 class="site-title">黑境站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">aak1247的博客</p>
@@ -128,27 +128,22 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a>
 
   </li>
-        <li class="menu-item menu-item-sitemap">
+        <li class="menu-item menu-item-works">
 
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+    <a href="/works" rel="section"><i class="fa fa-home fa-fw"></i>作品</a>
 
   </li>
   </ul>
@@ -188,7 +183,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑境空间站">
+      <meta itemprop="name" content="黑境站">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -232,7 +227,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="SSH框架的分层"><a href="#SSH框架的分层" class="headerlink" title="SSH框架的分层"></a>SSH框架的分层</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;学完了SSH框架，尽管还是不断地踩坑，但是对于整体的设计模式有了一定的了解。从作用上来说spring框架是一个Java的对象管理框架, 其主要作用是提供对象从创建到销毁的一套关系；而hibernate则是将数据库对象转化为Java对象的持久层和数据层框架，是对CRUD操作的一层封装。而spring MVC或Struts则是一个MVC的分层框架，充当路由器和分发者的角色。在SSH这样的框架基础上进行开发比起直接进行web开发面向对象的特性更明显，因此在设计模式上也具有一定的特点。<br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;在SSH框架中常见的Entity类是模型层，本质是数据表的对象化，属于数据层的封装，主要作用在于用对象来映射数据库表，主要包含对象的参数也就是数据表的表项以及所对应的set和get方法。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;而DAO类则是对数据操作的一层封装，是持久层的封装，比如通过将hibernate session的方法封装为DAO类的方法来提供持久层的操作，其成员主要为session对象所提供的CRUD方法，以及封装到更高层的操作。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;而Service则提供完整的业务逻辑，通过逻辑判断处理用户输入等比如判断输入是否合法，对于合法的数据和操作通过调用Dao类的方法来进行数据库访问和持久化，属于控制层或者说业务层，同时也直接连接着持久层。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;而Controller则是与用户直接交互的对象，通过处理请求调用service来响应用户操作，同时给出响应和处理视图层。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;在这种分层中，比较主要的一点在于将直接的数据库操作全部放在Dao层中，避免侵入Service层，而将所有的业务逻辑放在Service中，避免侵入Controller层。</p><p>其关系可以表示如下：</p><image src="http://qiniu.cdn.hive-intel.com/aak1247/SSH-ENTITY_DAO_SERVICE_CONTROLLER.png"><h1 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h1><p>写这里时其实已经过去了很久。在编程的实践中常常容易把一些看似不太重要的细节忽略掉，比如写比较简单的业务逻辑就直接在controller中做了处理，在逐渐增加功能时就会在不经意间把controller越写越大，更重要的一点在于常常会忽略代码的重用性，这其实都是非常不好的实践。</p></image>
+        <h1 id="SSH框架的分层"><a href="#SSH框架的分层" class="headerlink" title="SSH框架的分层"></a>SSH框架的分层</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;学完了SSH框架，尽管还是不断地踩坑，但是对于整体的设计模式有了一定的了解。从作用上来说spring框架是一个Java的对象管理框架, 其主要作用是提供对象从创建到销毁的一套关系；而hibernate则是将数据库对象转化为Java对象的持久层和数据层框架，是对CRUD操作的一层封装。而spring MVC或Struts则是一个MVC的分层框架，充当路由器和分发者的角色。在SSH这样的框架基础上进行开发比起直接进行web开发面向对象的特性更明显，因此在设计模式上也具有一定的特点。</p>
+<span id="more"></span>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在SSH框架中常见的Entity类是模型层，本质是数据表的对象化，属于数据层的封装，主要作用在于用对象来映射数据库表，主要包含对象的参数也就是数据表的表项以及所对应的set和get方法。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;而DAO类则是对数据操作的一层封装，是持久层的封装，比如通过将hibernate session的方法封装为DAO类的方法来提供持久层的操作，其成员主要为session对象所提供的CRUD方法，以及封装到更高层的操作。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;而Service则提供完整的业务逻辑，通过逻辑判断处理用户输入等比如判断输入是否合法，对于合法的数据和操作通过调用Dao类的方法来进行数据库访问和持久化，属于控制层或者说业务层，同时也直接连接着持久层。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;而Controller则是与用户直接交互的对象，通过处理请求调用service来响应用户操作，同时给出响应和处理视图层。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在这种分层中，比较主要的一点在于将直接的数据库操作全部放在Dao层中，避免侵入Service层，而将所有的业务逻辑放在Service中，避免侵入Controller层。</p>
+<p>其关系可以表示如下：<br><image src="http://qiniu.cdn.hive-intel.com/aak1247/SSH-ENTITY_DAO_SERVICE_CONTROLLER.png"/></p>
+<h1 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h1><p>写这里时其实已经过去了很久。在编程的实践中常常容易把一些看似不太重要的细节忽略掉，比如写比较简单的业务逻辑就直接在controller中做了处理，在逐渐增加功能时就会在不经意间把controller越写越大，更重要的一点在于常常会忽略代码的重用性，这其实都是非常不好的实践。</p>
+
     </div>
 
     
@@ -323,6 +327,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">aak1247</p>
   <div class="site-description" itemprop="description">Still waters run deep</div>
 </div>
@@ -331,7 +337,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -344,7 +350,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">53</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
