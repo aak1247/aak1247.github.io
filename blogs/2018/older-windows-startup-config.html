@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo_blog_512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_blog_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_blog_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.geekzu.org/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.aak1247.cn","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="长期使用 mac&#x2F;deepin 这样的系统以后再回windows会有非常大地不适应感，不够好在windows提供的灵活性使得它能够在应用层很容易具有其他系统的一些优雅特性，比如mac的全局搜索、热区、全局快捷键等。简单记录一下折腾windows的一些基本配置.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="win10的优雅使用">
+<meta property="og:url" content="http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html">
+<meta property="og:site_name" content="黑境">
+<meta property="og:description" content="长期使用 mac&#x2F;deepin 这样的系统以后再回windows会有非常大地不适应感，不够好在windows提供的灵活性使得它能够在应用层很容易具有其他系统的一些优雅特性，比如mac的全局搜索、热区、全局快捷键等。简单记录一下折腾windows的一些基本配置.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qiniu.cdn.hive-intel.com/aak1247/ahk_wallpaper_reduced.jpg">
+<meta property="og:image" content="http://www.wox.one/images/wox_preview.jpg">
+<meta property="article:published_time" content="2018-09-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-20T11:44:23.703Z">
+<meta property="article:author" content="aak1247">
+<meta property="article:tag" content="配置">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qiniu.cdn.hive-intel.com/aak1247/ahk_wallpaper_reduced.jpg">
+
+
+<link rel="canonical" href="http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html","path":"blogs/2018/older-windows-startup-config.html","title":"win10的优雅使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>win10的优雅使用 | 黑境</title>
+  
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://artalk.aak1247.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">黑境</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">aak1247的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li><li class="menu-item menu-item-issue"><a href="/issue" rel="section"><i class="fa fa-home fa-fw"></i>留言</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">软件篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wox"><span class="nav-number">1.1.</span> <span class="nav-text">wox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmder"><span class="nav-number">1.2.</span> <span class="nav-text">cmder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AutoHotkey"><span class="nav-number">1.3.</span> <span class="nav-text">AutoHotkey</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chocolatey"><span class="nav-number">1.4.</span> <span class="nav-text">chocolatey</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E7%AF%87"><span class="nav-number">2.</span> <span class="nav-text">功能篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wsl"><span class="nav-number">2.1.</span> <span class="nav-text">wsl</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%AF%87"><span class="nav-number">3.</span> <span class="nav-text">配置篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-number">3.1.</span> <span class="nav-text">字体</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">aak1247</p>
+  <div class="site-description" itemprop="description">Still water runs deep</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aak1247" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;aak1247" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:aak1247@126.com" title="E-Mail → mailto:aak1247@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/liu-ya-hui-61/activities" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;liu-ya-hui-61&#x2F;activities" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="//cdnjs.aak1247.cn/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.hive-intel.com/" title="https:&#x2F;&#x2F;www.hive-intel.com" rel="noopener" target="_blank">My Company: Meet Hive</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://0xc1.space/?from=legacy" title="https:&#x2F;&#x2F;0xc1.space&#x2F;?from&#x3D;legacy" rel="noopener" target="_blank">c1</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="aak1247">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑境">
+      <meta itemprop="description" content="Still water runs deep">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="win10的优雅使用 | 黑境">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          win10的优雅使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-14T00:00:00+08:00">2018-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-20 19:44:23" itemprop="dateModified" datetime="2024-09-20T19:44:23+08:00">2024-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/trying/" itemprop="url" rel="index"><span itemprop="name">折腾</span></a>
+        </span>
+    </span>
+
+  
+        
+          <span class="post-meta-item" title="阅读次数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-eye"></i>
+            </span>
+            <span class="post-meta-item-text">阅读次数：</span>
+            <span id="ArtalkPV" data-page-key="/blogs/2018/older-windows-startup-config.html" ></span>
+          </span>
+        
+      
+        
+          <span class="post-meta-item" title="评论数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-comment"></i>
+            </span>
+            <span class="post-meta-item-text">评论数：</span>
+            <a href="/blogs/2018/older-windows-startup-config.html#comments" itemprop="discussionUrl">
+              <span id="ArtalkCount" class="post-comments-count" data-page-key="/blogs/2018/older-windows-startup-config.html" itemprop="commentCount"></span>
+            </a>
+          </span>
+        
+      
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img src="http://qiniu.cdn.hive-intel.com/aak1247/ahk_wallpaper_reduced.jpg" alt="AutoHotKey"></p>
+<p>长期使用 mac&#x2F;deepin 这样的系统以后再回windows会有非常大地不适应感，不够好在windows提供的灵活性使得它能够在应用层很容易具有其他系统的一些优雅特性，比如mac的全局搜索、热区、全局快捷键等。简单记录一下折腾windows的一些基本配置.</p>
+<span id="more"></span>
+
+
+
+<h1 id="软件篇"><a href="#软件篇" class="headerlink" title="软件篇"></a>软件篇</h1><h2 id="wox"><a href="#wox" class="headerlink" title="wox"></a>wox</h2><p><a target="_blank" rel="noopener" href="http://www.wox.one/">wox</a>提供了类似于osx上Alfred&#x2F;聚焦搜索的功能，功能非常强大。 </p>
+<p><img src="http://www.wox.one/images/wox_preview.jpg" alt="wox"></p>
+<p>其他选项：<br> <a target="_blank" rel="noopener" href="https://github.com/KELiON/cerebro">cerebro</a></p>
+<h2 id="cmder"><a href="#cmder" class="headerlink" title="cmder"></a>cmder</h2><p><a target="_blank" rel="noopener" href="http://cmder.net/">cmder</a>是一个windows下的命令行工具，具有一些linux终端、item具有的多标签、半透明、全局唤醒等等基本特性，另外针对windows环境下不统一的命令行环境还提供了丰富的可配置项，能够支持各种命令行，内置了<code>git bash</code>、<a href="#wsl"><code>wsl</code></a>, <code>powershell</code>, <code>cmd</code>等命令行的支持，支持自定义新的命令行环境。</p>
+<p>可以参考<a href="/note-about-cmder.html">cmder的配置</a> (汗…还没填坑)</p>
+<p>可以使用 wox 来定义全局的快捷键调用 cmder。</p>
+<h2 id="AutoHotkey"><a href="#AutoHotkey" class="headerlink" title="AutoHotkey"></a>AutoHotkey</h2><p><a target="_blank" rel="noopener" href="https://www.autohotkey.com/">AutoHotkey</a>是一个脚本工具，它可以通过鼠标和键盘事件来实现丰富的功能。一个比较简单的应用就是通过定时获取鼠标的位置来判定鼠标是否触及了屏幕边缘、角等，以此来实现一些任务，比如显示桌面、切换工作区、显示多任务窗口等等。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/aak1247/autoHotkeyConfig">config</a>一个能够实现鼠标移到屏幕边缘自动切换工作区、左上角显示多任务窗口等功能的脚本模板。</p>
+<h2 id="chocolatey"><a href="#chocolatey" class="headerlink" title="chocolatey"></a>chocolatey</h2><p><a target="_blank" rel="noopener" href="https://chocolatey.org/">chocolatey</a>是一个windows下的包管理器，基于powershell来实现，对于常用的软件尤其是编程中使用的工具支持已经非常好了。这是安装chocolatey的命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Bypass <span class="literal">-Scope</span> <span class="keyword">Process</span> <span class="literal">-Force</span>; <span class="built_in">iex</span> ((<span class="built_in">New-Object</span> System.Net.WebClient).DownloadString(<span class="string">&#x27;https://chocolatey.org/install.ps1&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>需要用管理员权限打开powershell执行。</p>
+<h1 id="功能篇"><a href="#功能篇" class="headerlink" title="功能篇"></a>功能篇</h1><h2 id="wsl"><a href="#wsl" class="headerlink" title="wsl"></a>wsl</h2><p>wsl 是 windows 下的 linux 子系统，基于 windows 系统 API 实现了一个 POSIX 的内核，所以虚拟化程度比起虚拟机要低得多，但是能提供更大的权限和灵活性，比如使用 linux 下的工具和软件来操作 windows 下的文件，比起虚拟机共享数据要方便得多，也能省去双系统切换系统的麻烦。</p>
+<p>安装过程见<a target="_blank" rel="noopener" href="http://aak1247.coding.me/linux-on-windows.html">启用Win10的Linux子系统</a>。</p>
+<p>当然，缺点也是显而易见的，较低的虚拟化程度带来了安全性问题，有时候也会因为文件系统的差异（文件系统还是 ntfs ）而引起一些非常难以发现的 bug 。</p>
+<h1 id="配置篇"><a href="#配置篇" class="headerlink" title="配置篇"></a>配置篇</h1><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>可以下载<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/aak1247/shell-set-up/master/font/Meslo%20LG%20M%20Regular%20Nerd%20Font%20Complete.otf">meslo</a> 以支持命令行显示炫酷的Unicode字符。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="aak1247 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="aak1247 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>aak1247
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html" title="win10的优雅使用">http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.jpg">
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag"><i class="fa fa-tag"></i> 配置</a>
+              <a href="/tags/windows/" rel="tag"><i class="fa fa-tag"></i> windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/2018/older-beside-life.html" rel="prev" title="写在人生边上">
+                  <i class="fa fa-angle-left"></i> 写在人生边上
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blogs/2018/older-mongodb-server-config.html" rel="next" title="linux ubuntu 下 mongodb 4.0 安装和配置远程连接">
+                  linux ubuntu 下 mongodb 4.0 安装和配置远程连接 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陕ICP备19000654号 </a>
+      <img src="https://beian.mps.gov.cn/img/head-logo2.4d29d9b1.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">aak1247</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="//cdnjs.aak1247.cn/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"//cdnjs.aak1247.cn/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"//cdnjs.aak1247.cn/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="artalk" type="application/json">{"enable":true,"server":"https://artalk.aak1247.cn/","site":"aak1247's blog","jsUrl":"https://artalk.aak1247.cn/dist/Artalk.js","cssUrl":"https://artalk.aak1247.cn/dist/Artalk.css","pvCount":true,"commentCount":true,"darkMode":"auto","useBackendConf":true,"el":"#comments","pageKey":"/blogs/2018/older-windows-startup-config.html","pageTitle":"win10的优雅使用"}</script>
+
+<link rel="stylesheet" href="https://artalk.aak1247.cn/dist/Artalk.css">
+<style>.artalk{width:initial;}</style>
+
+<script type="text/javascript">
+;(function() {
+  if (CONFIG.page.comments) {
+
+    NexT.utils.loadComments(CONFIG.artalk.el)
+      .then(() => NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+        condition: window.Artalk 
+      }))
+      .then(() => {
+        Artalk.init(CONFIG.artalk);
+      });
+
+  } else {
+
+    NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+      condition: window.Artalk 
+    }).then(() => {
+      Artalk.loadCountWidget({
+        server: CONFIG.artalk.server,
+        site: CONFIG.artalk.site,
+        pvEl: '#ArtalkPV',
+        countEl: '#ArtalkCount',
+      });
+    })
+
+  }
+})();
+</script>
+</body>
+</html>

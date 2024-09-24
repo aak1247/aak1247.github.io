@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo_blog_512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_blog_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_blog_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.geekzu.org/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.aak1247.cn","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：    1. 随时控制程序运行、重启；    2. 方便开机自启动；    3. 启动命令更方便。 systemd 和 init">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu 服务脚本编写">
+<meta property="og:url" content="http://www.aak1247.cn/blogs/2017/older-java-jar-as-service.html">
+<meta property="og:site_name" content="黑境">
+<meta property="og:description" content="在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：    1. 随时控制程序运行、重启；    2. 方便开机自启动；    3. 启动命令更方便。 systemd 和 init">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-07-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-20T11:37:26.411Z">
+<meta property="article:author" content="aak1247">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.aak1247.cn/blogs/2017/older-java-jar-as-service.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.aak1247.cn/blogs/2017/older-java-jar-as-service.html","path":"blogs/2017/older-java-jar-as-service.html","title":"ubuntu 服务脚本编写"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ubuntu 服务脚本编写 | 黑境</title>
+  
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://artalk.aak1247.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">黑境</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">aak1247的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li><li class="menu-item menu-item-issue"><a href="/issue" rel="section"><i class="fa fa-home fa-fw"></i>留言</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#systemd-%E5%92%8C-init"><span class="nav-number">1.</span> <span class="nav-text">systemd 和 init</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">主要步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">配置服务启动脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BE%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90-java-web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">举一个例子: java web服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E8%AF%A6%E7%BB%86%E7%9A%84%E8%AE%BE%E5%AE%9A"><span class="nav-number">3.2.</span> <span class="nav-text">更详细的设定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4%E5%A4%84%E7%90%86%E8%84%9A%E6%9C%AC"><span class="nav-number">4.</span> <span class="nav-text">配置其他命令处理脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BE%E4%B8%80%E4%B8%AA%E6%A0%97%E5%AD%90"><span class="nav-number">5.</span> <span class="nav-text">举一个栗子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-number">6.</span> <span class="nav-text">自启动</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">aak1247</p>
+  <div class="site-description" itemprop="description">Still water runs deep</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aak1247" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;aak1247" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:aak1247@126.com" title="E-Mail → mailto:aak1247@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/liu-ya-hui-61/activities" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;liu-ya-hui-61&#x2F;activities" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="//cdnjs.aak1247.cn/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.hive-intel.com/" title="https:&#x2F;&#x2F;www.hive-intel.com" rel="noopener" target="_blank">My Company: Meet Hive</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://0xc1.space/?from=legacy" title="https:&#x2F;&#x2F;0xc1.space&#x2F;?from&#x3D;legacy" rel="noopener" target="_blank">c1</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.aak1247.cn/blogs/2017/older-java-jar-as-service.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="aak1247">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑境">
+      <meta itemprop="description" content="Still water runs deep">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ubuntu 服务脚本编写 | 黑境">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu 服务脚本编写
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2017-07-29T00:00:00+08:00">2017-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-20 19:37:26" itemprop="dateModified" datetime="2024-09-20T19:37:26+08:00">2024-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/sre/" itemprop="url" rel="index"><span itemprop="name">SRE</span></a>
+        </span>
+    </span>
+
+  
+        
+          <span class="post-meta-item" title="阅读次数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-eye"></i>
+            </span>
+            <span class="post-meta-item-text">阅读次数：</span>
+            <span id="ArtalkPV" data-page-key="/blogs/2017/older-java-jar-as-service.html" ></span>
+          </span>
+        
+      
+        
+          <span class="post-meta-item" title="评论数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-comment"></i>
+            </span>
+            <span class="post-meta-item-text">评论数：</span>
+            <a href="/blogs/2017/older-java-jar-as-service.html#comments" itemprop="discussionUrl">
+              <span id="ArtalkCount" class="post-comments-count" data-page-key="/blogs/2017/older-java-jar-as-service.html" itemprop="commentCount"></span>
+            </a>
+          </span>
+        
+      
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在进行服务器部署时，常常会需要让程序作为服务启动。使用服务的方式运行程序有以下优点：<br>    1. 随时控制程序运行、重启；<br>    2. 方便开机自启动；<br>    3. 启动命令更方便。</p>
+<h1 id="systemd-和-init"><a href="#systemd-和-init" class="headerlink" title="systemd 和 init"></a>systemd 和 init</h1><span id="more"></span>
+<p>init是一个由内核启动的用户级进程。 </p>
+<p>内核自行启动（已经被载入内存，开始运行，并已初始化所有的设备驱动程序和数据结构等）之后，就通过启动一个用户级程序init的方式，完成引导进程。所以,init始终是第一个进程（其进程编号始终为1）。<br>init进程作为服务的启动进程由来已久，但是其存在启动较慢、编写复杂的问题。</p>
+<p>Systemd 就是为了解决这些问题而诞生的。它的设计目标是，为系统的启动和管理提供一套完整的解决方案。</p>
+<p>Systemd 并不是一个命令，而是一组命令，涉及到系统管理的方方面面，对于其命令，这里不作过多介绍。在一些比较新版本的Linux中，systemd 取代了init，其进程编号为1，故服务的启动也是通过<code>systemd</code>进行管理。<br>可以使用<code>systemctl --version</code>命令查看<code>systemd</code>的版本。</p>
+<h1 id="主要步骤"><a href="#主要步骤" class="headerlink" title="主要步骤"></a>主要步骤</h1><ol>
+<li>配置服务启动脚本</li>
+<li>配置命令处理脚本</li>
+<li>开机自启</li>
+</ol>
+<h1 id="配置服务启动脚本"><a href="#配置服务启动脚本" class="headerlink" title="配置服务启动脚本"></a>配置服务启动脚本</h1><p>ubuntu LTS 16.04的服务依赖于<code>systemd</code>的服务管理。<br>听说，<code>systemd</code>的配置位于<code>/usr/lib/systemd/system</code>目录下。但是在ubuntu 16.04中，服务的目录为<code>/lib/systemd/system</code>,要建立一个名为<code>hello</code>的服务，就在此目录下添加一个文件名为<code>hello.service</code>的文件即可。其内容包含：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=xxxxxxxxxxxxxxxx #描述服务 </span><br><span class="line">After=network.target #用于指定服务启动的前置条件</span><br><span class="line">Documentation=  #帮助文件的地址如http://baidu.com/ ，可缺省</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">User=  启动用户</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Group=  启动用户组</span></span><br><span class="line">ExecStart=  #服务启动命令，此项必填</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ExecStop=  服务终止命令，可缺省</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Recommended limits <span class="keyword">for</span> <span class="keyword">for</span> mongod as specified <span class="keyword">in</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">http://docs.mongodb.org/manual/reference/ulimit/#recommended-settings</span></span><br><span class="line"></span><br><span class="line">[Install] #用来定义如何启动，以及是否开机启动。</span><br><span class="line">WantedBy=multi-user.target #当服务开机启动后，会放入什么文件夹，影响启动顺序</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="举一个例子-java-web服务器"><a href="#举一个例子-java-web服务器" class="headerlink" title="举一个例子: java web服务器"></a>举一个例子: java web服务器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=A java server</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/bin/java -jar hello.jar</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">file size</span></span><br><span class="line">LimitFSIZE=infinity</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">cpu time</span></span><br><span class="line">LimitCPU=infinity</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">virtual memory size</span></span><br><span class="line">LimitAS=infinity</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">open files</span></span><br><span class="line">LimitNOFILE=64000</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">processes/threads</span></span><br><span class="line">LimitNPROC=64000</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">total threads (user+kernel)</span></span><br><span class="line">TasksMax=infinity</span><br><span class="line">TasksAccounting=false</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是， 服务启动命令需要输入绝对路径的形式，因为在服务启动时，可能相关的环境变量还未加载。</p>
+<p>在<code>/lib/systemd/system</code>路径下添加此文件并保存为<code>hello.service</code>后，就可以通过<code>service hello start</code>命令启动服务了。</p>
+<p>可以通过<code>systemctl status hello.service</code>命令查看服务状态。</p>
+<h2 id="更详细的设定"><a href="#更详细的设定" class="headerlink" title="更详细的设定"></a>更详细的设定</h2><p>[Unit]区块通常是配置文件的第一个区块，用来定义 Unit(在这里就是服务) 的元数据，以及配置与其他 Unit 的关系。它的主要字段如下。</p>
+<pre><code>Description：简短描述
+Documentation：文档地址
+Requires：当前 Unit 依赖的其他 Unit，如果它们没有运行，当前 Unit 会启动失败
+Wants：与当前 Unit 配合的其他 Unit，如果它们没有运行，当前 Unit 不会启动失败
+BindsTo：与Requires类似，它指定的 Unit 如果退出，会导致当前 Unit 停止运行
+Before：如果该字段指定的 Unit 也要启动，那么必须在当前 Unit 之后启动
+After：如果该字段指定的 Unit 也要启动，那么必须在当前 Unit 之前启动
+Conflicts：这里指定的 Unit 不能与当前 Unit 同时运行
+Condition...：当前 Unit 运行必须满足的条件，否则不会运行
+Assert...：当前 Unit 运行必须满足的条件，否则会报启动失败
+</code></pre>
+<p>[Service]区块用来 Service 的配置，只有 Service 类型的 Unit 才有这个区块。它的主要字段如下。</p>
+<pre><code>Type：定义启动时的进程行为。它有以下几种值。
+Type=simple：默认值，执行ExecStart指定的命令，启动主进程
+Type=forking：以 fork 方式从父进程创建子进程，创建后父进程会立即退出
+Type=oneshot：一次性进程，Systemd 会等当前服务退出，再继续往下执行
+Type=dbus：当前服务通过D-Bus启动
+Type=notify：当前服务启动完毕，会通知Systemd，再继续往下执行
+Type=idle：若有其他任务执行完毕，当前服务才会运行
+ExecStart：启动当前服务的命令
+ExecStartPre：启动当前服务之前执行的命令
+ExecStartPost：启动当前服务之后执行的命令
+ExecReload：重启当前服务时执行的命令
+ExecStop：停止当前服务时执行的命令
+ExecStopPost：停止当其服务之后执行的命令
+RestartSec：自动重启当前服务间隔的秒数
+Restart：定义何种情况 Systemd 会自动重启当前服务，可能的值包括always（总是重启）、on-success、on-failure、on-abnormal、on-abort、on-watchdog
+TimeoutSec：定义 Systemd 停止当前服务之前等待的秒数
+Environment：指定环境变量
+</code></pre>
+<p>[Install]通常是配置文件的最后一个区块，用来定义如何启动，以及是否开机启动。它的主要字段如下。</p>
+<pre><code>WantedBy：它的值是一个或多个 Target，当前 Unit 激活时（enable）符号链接会放入/etc/systemd/system目录下面以 Target 名 + .wants后缀构成的子目录中
+RequiredBy：它的值是一个或多个 Target，当前 Unit 激活时，符号链接会放入/etc/systemd/system目录下面以 Target 名 + .required后缀构成的子目录中
+Alias：当前 Unit 可用于启动的别名
+Also：当前 Unit 激活（enable）时，会被同时激活的其他 Unit
+</code></pre>
+<p>完整配置可以查看<br><a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html">官方文档</a></p>
+<h1 id="配置其他命令处理脚本"><a href="#配置其他命令处理脚本" class="headerlink" title="配置其他命令处理脚本"></a>配置其他命令处理脚本</h1><p>其他命令的处理与旧版本的ubuntu类似，脚本位于<code>/etc/init.d/</code>路径下，如<code>hello</code>服务，其脚本应保存为<code>hello</code>或<code>hello.sh</code>。编写脚本处理命令即可。</p>
+<h1 id="举一个栗子"><a href="#举一个栗子" class="headerlink" title="举一个栗子"></a>举一个栗子</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">chkconfig - 85 15</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">description: hello service</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">processname: hello</span></span><br><span class="line"></span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">        bye)</span><br><span class="line">                echo &quot;bye&quot;</span><br><span class="line">                exit 0</span><br><span class="line">        ;;</span><br><span class="line">        hello)</span><br><span class="line">                echo &quot;hello&quot;</span><br><span class="line">                java -jar hello.jar&amp;</span><br><span class="line">                exit 0</span><br><span class="line">        ;;</span><br><span class="line">        *)</span><br><span class="line">                echo &quot;不存在的&quot;</span><br><span class="line">        ;;</span><br><span class="line">esac</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+<h1 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h1><p>要使得服务自启动，输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable hello.service</span><br></pre></td></tr></table></figure>
+<p>即可，关闭自启动输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable hello.service</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="aak1247 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="aak1247 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>aak1247
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.aak1247.cn/blogs/2017/older-java-jar-as-service.html" title="ubuntu 服务脚本编写">http://www.aak1247.cn/blogs/2017/older-java-jar-as-service.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.jpg">
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-linux-start.html" rel="prev" title="ubuntu Linux 装机完成后的工作">
+                  <i class="fa fa-angle-left"></i> ubuntu Linux 装机完成后的工作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-python-scrapy-path.html" rel="next" title="爬虫要学的内容">
+                  爬虫要学的内容 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陕ICP备19000654号 </a>
+      <img src="https://beian.mps.gov.cn/img/head-logo2.4d29d9b1.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">aak1247</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="//cdnjs.aak1247.cn/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"//cdnjs.aak1247.cn/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"//cdnjs.aak1247.cn/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://www.aak1247.cn/blogs/2017/older-java-jar-as-service.html"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="artalk" type="application/json">{"enable":true,"server":"https://artalk.aak1247.cn/","site":"aak1247's blog","jsUrl":"https://artalk.aak1247.cn/dist/Artalk.js","cssUrl":"https://artalk.aak1247.cn/dist/Artalk.css","pvCount":true,"commentCount":true,"darkMode":"auto","useBackendConf":true,"el":"#comments","pageKey":"/blogs/2017/older-java-jar-as-service.html","pageTitle":"ubuntu 服务脚本编写"}</script>
+
+<link rel="stylesheet" href="https://artalk.aak1247.cn/dist/Artalk.css">
+<style>.artalk{width:initial;}</style>
+
+<script type="text/javascript">
+;(function() {
+  if (CONFIG.page.comments) {
+
+    NexT.utils.loadComments(CONFIG.artalk.el)
+      .then(() => NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+        condition: window.Artalk 
+      }))
+      .then(() => {
+        Artalk.init(CONFIG.artalk);
+      });
+
+  } else {
+
+    NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+      condition: window.Artalk 
+    }).then(() => {
+      Artalk.loadCountWidget({
+        server: CONFIG.artalk.server,
+        site: CONFIG.artalk.site,
+        pvEl: '#ArtalkPV',
+        countEl: '#ArtalkCount',
+      });
+    })
+
+  }
+})();
+</script>
+</body>
+</html>

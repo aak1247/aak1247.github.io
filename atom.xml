@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>黑境</title>
+  
+  <subtitle>aak1247的博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.aak1247.cn/"/>
+  <updated>2024-09-22T18:44:18.298Z</updated>
+  <id>http://www.aak1247.cn/</id>
+  
+  <author>
+    <name>aak1247</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有关初心</title>
+    <link href="http://www.aak1247.cn/blogs/2024/%E6%9C%89%E5%85%B3%E5%88%9D%E5%BF%83.html"/>
+    <id>http://www.aak1247.cn/blogs/2024/有关初心.html</id>
+    <published>2024-09-21T16:00:00.000Z</published>
+    <updated>2024-09-22T18:44:18.298Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有关创业的初心。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随想" scheme="http://www.aak1247.cn/categories/emotion/"/>
+    
+    
+      <category term="创业笔记" scheme="http://www.aak1247.cn/tags/%E5%88%9B%E4%B8%9A%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>创业笔记20240920</title>
+    <link href="http://www.aak1247.cn/blogs/2024/%E5%88%9B%E4%B8%9A%E7%AC%94%E8%AE%B020240920.html"/>
+    <id>http://www.aak1247.cn/blogs/2024/创业笔记20240920.html</id>
+    <published>2024-09-19T16:00:00.000Z</published>
+    <updated>2024-09-22T12:30:24.232Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;接下来可能会在博客里记录一些有关创业的笔记，不涉及敏感信息的内容，都会用这种形式记录一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://www.aak1247.cn/categories/diary/"/>
+    
+    
+      <category term="创业笔记" scheme="http://www.aak1247.cn/tags/%E5%88%9B%E4%B8%9A%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是Build in public</title>
+    <link href="http://www.aak1247.cn/blogs/2024/build-in-public.html"/>
+    <id>http://www.aak1247.cn/blogs/2024/build-in-public.html</id>
+    <published>2024-07-22T16:00:00.000Z</published>
+    <updated>2024-09-20T11:33:03.916Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;顾名思义，Build in public就是在公共视野中构建（产品）。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://www.aak1247.cn/categories/diary/"/>
+    
+    
+      <category term="创业笔记" scheme="http://www.aak1247.cn/tags/%E5%88%9B%E4%B8%9A%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>日记20240709</title>
+    <link href="http://www.aak1247.cn/blogs/2024/%E6%97%A5%E8%AE%B020240709.html"/>
+    <id>http://www.aak1247.cn/blogs/2024/日记20240709.html</id>
+    <published>2024-07-08T16:00:00.000Z</published>
+    <updated>2024-09-20T12:15:33.154Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;又是很久没写日记了，这三年来称得上是兵荒马乱，仿佛已过去很多年，又仿佛才是昨天。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://www.aak1247.cn/categories/diary/"/>
+    
+    
+      <category term="垃圾时间" scheme="http://www.aak1247.cn/tags/%E5%9E%83%E5%9C%BE%E6%97%B6%E9%97%B4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>May the Force Be With You</title>
+    <link href="http://www.aak1247.cn/blogs/2024/May%20the%20Force%20Be%20With%20You.html"/>
+    <id>http://www.aak1247.cn/blogs/2024/May the Force Be With You.html</id>
+    <published>2024-05-09T16:00:00.000Z</published>
+    <updated>2024-09-20T11:33:11.975Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  一篇公众号里发不出去的旧文。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="观点" scheme="http://www.aak1247.cn/categories/opinion/"/>
+    
+    
+      <category term="随笔" scheme="http://www.aak1247.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>身份社会和契约社会——写在唐山案之后</title>
+    <link href="http://www.aak1247.cn/blogs/2022/%E8%BA%AB%E4%BB%BD%E7%A4%BE%E4%BC%9A%E5%92%8C%E5%A5%91%E7%BA%A6%E7%A4%BE%E4%BC%9A%E2%80%94%E2%80%94%E5%86%99%E5%9C%A8%E5%94%90%E5%B1%B1%E6%A1%88%E4%B9%8B%E5%90%8E.html"/>
+    <id>http://www.aak1247.cn/blogs/2022/身份社会和契约社会——写在唐山案之后.html</id>
+    <published>2022-06-12T16:00:00.000Z</published>
+    <updated>2024-09-20T11:33:22.430Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一篇暴论。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="观点" scheme="http://www.aak1247.cn/categories/opinion/"/>
+    
+    
+      <category term="社会" scheme="http://www.aak1247.cn/tags/%E7%A4%BE%E4%BC%9A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>日记一则</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older/diary-2019-07-25.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older/diary-2019-07-25.html</id>
+    <published>2019-07-24T16:00:00.000Z</published>
+    <updated>2021-09-06T15:20:00.914Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;迷茫是既有的情绪。日日习得新的警句也无以明志，所求连自己也不清楚的情况下，无论行何事总难离悖论。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://www.aak1247.cn/categories/diary/"/>
+    
+    
+      <category term="有关迷茫" scheme="http://www.aak1247.cn/tags/%E6%9C%89%E5%85%B3%E8%BF%B7%E8%8C%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>日记 20180618</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older/diary-0618.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older/diary-0618.html</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2021-09-06T15:20:00.879Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;近年来写文章十分受困， 一到抒情或者记事就觉得备受约束，然后几句话就匆匆结束了。&lt;/p&gt;
+&lt;p&gt; 
+        
+      
+    
+    </summary>
+    
+      <category term="日记" scheme="http://www.aak1247.cn/categories/diary/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>百度搜索内常用到的SEO算法总结</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older-seo-baidu-algorithm-summary.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older-seo-baidu-algorithm-summary.html</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2024-09-20T11:43:42.106Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;​	简单介绍一下这几天看的百度常用到的SEO算法，如惊雷算法、清风算法、飓风算法、信风算法等。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="http://www.aak1247.cn/categories/notes/"/>
+    
+    
+      <category term="SEO" scheme="http://www.aak1247.cn/tags/SEO/"/>
+    
+      <category term="总结" scheme="http://www.aak1247.cn/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于包袱的若干反思</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older/introspection-about-burden.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older/introspection-about-burden.html</id>
+    <published>2019-06-13T16:00:00.000Z</published>
+    <updated>2021-09-06T15:20:00.808Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;​	人只有在极有事和极无事的状态里才能不忘反思。然而极有事的处境中人往往难以获得能将反思记录下来的时间，因此极闲有时也不是全然无益的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日记" scheme="http://www.aak1247.cn/categories/diary/"/>
+    
+    
+      <category term="人生的经验" scheme="http://www.aak1247.cn/tags/%E4%BA%BA%E7%94%9F%E7%9A%84%E7%BB%8F%E9%AA%8C/"/>
+    
+      <category term="反思" scheme="http://www.aak1247.cn/tags/%E5%8F%8D%E6%80%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次自动测试失败之后的 debug</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older-something-about-debug-when-maven-hang.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older-something-about-debug-when-maven-hang.html</id>
+    <published>2019-05-28T16:00:00.000Z</published>
+    <updated>2024-09-20T11:43:55.293Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  在&lt;code&gt;gitlab-CI&lt;/code&gt;中使用&lt;code&gt;maven test&lt;/code&gt;遭遇了一次神奇的阻塞以后我进行了漫长的debug过程。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="开发" scheme="http://www.aak1247.cn/categories/develop/"/>
+    
+    
+      <category term="CI" scheme="http://www.aak1247.cn/tags/CI/"/>
+    
+      <category term="MAVEN" scheme="http://www.aak1247.cn/tags/MAVEN/"/>
+    
+      <category term="debug" scheme="http://www.aak1247.cn/tags/debug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring boot 禁用web server</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older-spring-boot-disable-web.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older-spring-boot-disable-web.html</id>
+    <published>2019-05-21T16:00:00.000Z</published>
+    <updated>2024-09-20T11:44:17.279Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;spring boot&lt;/code&gt;项目做拆分以后，一部分应用不再需要提供http服务，记录一下禁用web的方式。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="开发" scheme="http://www.aak1247.cn/categories/develop/"/>
+    
+    
+      <category term="java" scheme="http://www.aak1247.cn/tags/java/"/>
+    
+      <category term="spring boot" scheme="http://www.aak1247.cn/tags/spring-boot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker 安装的 gitlab 修改配置/重置密码等</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older-gitlab-docker-compose-rails-console.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older-gitlab-docker-compose-rails-console.html</id>
+    <published>2019-05-20T16:00:00.000Z</published>
+    <updated>2024-09-20T11:35:58.665Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简单记录一下&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SRE" scheme="http://www.aak1247.cn/categories/sre/"/>
+    
+    
+      <category term="gitlab" scheme="http://www.aak1247.cn/tags/gitlab/"/>
+    
+      <category term="配置" scheme="http://www.aak1247.cn/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 WSL 中安装 Arch Linux</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older-replace-ubuntu-with-arch-on-wsl.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older-replace-ubuntu-with-arch-on-wsl.html</id>
+    <published>2019-04-09T16:00:00.000Z</published>
+    <updated>2024-09-20T11:43:23.721Z</updated>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Install_on_WSL_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&quot;&gt;官方教程&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;补充： &lt;a href=&quot;https://github.com/yuk7/arch-prebuilt&quot;&gt;预编译的fakeroot-tcp包&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="折腾" scheme="http://www.aak1247.cn/categories/trying/"/>
+    
+    
+      <category term="wsl" scheme="http://www.aak1247.cn/tags/wsl/"/>
+    
+      <category term="arch" scheme="http://www.aak1247.cn/tags/arch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 ubuntu 上编译安装 pacman</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older-build-pacman-on-ubuntu.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older-build-pacman-on-ubuntu.html</id>
+    <published>2019-04-03T16:00:00.000Z</published>
+    <updated>2024-09-20T11:39:42.091Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为了编译一个arch的包，迫不得已需要在现有的机器上安装pacman，具体的编译过程如下：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="折腾" scheme="http://www.aak1247.cn/categories/trying/"/>
+    
+    
+      <category term="笔记" scheme="http://www.aak1247.cn/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【备忘】shell比较好用的快捷键</title>
+    <link href="http://www.aak1247.cn/blogs/2019/older/shell-keys.html"/>
+    <id>http://www.aak1247.cn/blogs/2019/older/shell-keys.html</id>
+    <published>2019-02-26T16:00:00.000Z</published>
+    <updated>2021-09-06T15:20:00.712Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;过一段时间就得找一次。。。备忘&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="http://www.aak1247.cn/categories/notes/"/>
+    
+    
+      <category term="shell" scheme="http://www.aak1247.cn/tags/shell/"/>
+    
+      <category term="快捷键" scheme="http://www.aak1247.cn/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>双十一集赞游戏、博弈论及其他</title>
+    <link href="http://www.aak1247.cn/blogs/2018/older-about-taobao-zan-game.html"/>
+    <id>http://www.aak1247.cn/blogs/2018/older-about-taobao-zan-game.html</id>
+    <published>2018-10-24T16:00:00.000Z</published>
+    <updated>2024-09-20T11:33:30.771Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1540678898993&amp;di=8535effdaf4e654a8244a87f6f01c127&amp;imgtype=0&amp;src=http://img.zcool.cn/community/01b0aa5982baf9a8012156035b2546.jpg&quot; alt=&quot;双十一&quot;&gt;&lt;/p&gt;
+&lt;p&gt;比起往年的双十一，商家参与的热情稍微消退了一些。但是淘宝2018年的双十一游戏却十分有趣，比起传统的运气类游戏，这种包含合作和对抗的PvP游戏有非常多可说之处。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="观点" scheme="http://www.aak1247.cn/categories/opinion/"/>
+    
+    
+      <category term="博弈论" scheme="http://www.aak1247.cn/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
+      <category term="双十一" scheme="http://www.aak1247.cn/tags/%E5%8F%8C%E5%8D%81%E4%B8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux ubuntu 下 mongodb 4.0 安装和配置远程连接</title>
+    <link href="http://www.aak1247.cn/blogs/2018/older-mongodb-server-config.html"/>
+    <id>http://www.aak1247.cn/blogs/2018/older-mongodb-server-config.html</id>
+    <published>2018-10-09T16:00:00.000Z</published>
+    <updated>2024-09-20T11:40:48.626Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h1&gt;&lt;p&gt;搬运： &lt;a href=&quot;https://docs.mongodb.com/manual/administration/install-on-linux/&quot;&gt;安装教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;选择对应版本，复制粘贴命令即可，这里就不涉及了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SRE" scheme="http://www.aak1247.cn/categories/sre/"/>
+    
+    
+      <category term="配置" scheme="http://www.aak1247.cn/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="mongodb" scheme="http://www.aak1247.cn/tags/mongodb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>win10的优雅使用</title>
+    <link href="http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html"/>
+    <id>http://www.aak1247.cn/blogs/2018/older-windows-startup-config.html</id>
+    <published>2018-09-13T16:00:00.000Z</published>
+    <updated>2024-09-20T11:44:23.703Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://qiniu.cdn.hive-intel.com/aak1247/ahk_wallpaper_reduced.jpg&quot; alt=&quot;AutoHotKey&quot;&gt;&lt;/p&gt;
+&lt;p&gt;长期使用 mac&amp;#x2F;deepin 这样的系统以后再回windows会有非常大地不适应感，不够好在windows提供的灵活性使得它能够在应用层很容易具有其他系统的一些优雅特性，比如mac的全局搜索、热区、全局快捷键等。简单记录一下折腾windows的一些基本配置.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="折腾" scheme="http://www.aak1247.cn/categories/trying/"/>
+    
+    
+      <category term="配置" scheme="http://www.aak1247.cn/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="windows" scheme="http://www.aak1247.cn/tags/windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>写在人生边上</title>
+    <link href="http://www.aak1247.cn/blogs/2018/older-beside-life.html"/>
+    <id>http://www.aak1247.cn/blogs/2018/older-beside-life.html</id>
+    <published>2018-07-31T16:00:00.000Z</published>
+    <updated>2024-09-20T11:33:38.536Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;写在人生边上&quot;&gt;&lt;a href=&quot;#写在人生边上&quot; class=&quot;headerlink&quot; title=&quot;写在人生边上&quot;&gt;&lt;/a&gt;写在人生边上&lt;/h2&gt;&lt;h3 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h3&gt;&lt;p&gt;代码写久了，人就有些木讷。写在也会也不小心打成卸载。&lt;/p&gt;
+&lt;p&gt;自拿到毕业证已过了一个月。一直把大学毕业称为社会人的起点，左右脚都远远踏出了校门，竟早已是个彻头彻尾的社会人。临毕业的一年中四海为家，到今天累计也只在西安待过三月余。四海为家的社会人，实在是早已深入了人生的内在，人生一词，仿佛没视野的小地图一般在眼前展开了一团未知地形。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随想" scheme="http://www.aak1247.cn/categories/emotion/"/>
+    
+    
+      <category term="人生的经验" scheme="http://www.aak1247.cn/tags/%E4%BA%BA%E7%94%9F%E7%9A%84%E7%BB%8F%E9%AA%8C/"/>
+    
+  </entry>
+  
+</feed>

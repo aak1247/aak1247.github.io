@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo_blog_512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_blog_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_blog_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.geekzu.org/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.aak1247.cn","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="记录一下一些我比较常用的配置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu Linux 装机完成后的工作">
+<meta property="og:url" content="http://www.aak1247.cn/blogs/2017/older-linux-start.html">
+<meta property="og:site_name" content="黑境">
+<meta property="og:description" content="记录一下一些我比较常用的配置。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qiniu.cdn.hive-intel.com/aak1247/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_20180920140817.png">
+<meta property="article:published_time" content="2017-07-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-20T11:40:18.945Z">
+<meta property="article:author" content="aak1247">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="装机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qiniu.cdn.hive-intel.com/aak1247/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_20180920140817.png">
+
+
+<link rel="canonical" href="http://www.aak1247.cn/blogs/2017/older-linux-start.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.aak1247.cn/blogs/2017/older-linux-start.html","path":"blogs/2017/older-linux-start.html","title":"ubuntu Linux 装机完成后的工作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ubuntu Linux 装机完成后的工作 | 黑境</title>
+  
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://artalk.aak1247.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">黑境</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">aak1247的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li><li class="menu-item menu-item-issue"><a href="/issue" rel="section"><i class="fa fa-home fa-fw"></i>留言</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell"><span class="nav-number">1.1.</span> <span class="nav-text">shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim"><span class="nav-number">1.2.</span> <span class="nav-text">vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux"><span class="nav-number">1.3.</span> <span class="nav-text">tmux</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">语言环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#node%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">node配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85nvm"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装nvm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-nvm-%E5%AE%89%E8%A3%85-node"><span class="nav-number">2.1.2.</span> <span class="nav-text">通过 nvm 安装 node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%B7%98%E5%AE%9D%E9%95%9C%E5%83%8F"><span class="nav-number">2.1.3.</span> <span class="nav-text">配置淘宝镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-%E6%9B%B4%E6%8D%A2%E6%BA%90"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">npm 更换源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-cnpm"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">安装 cnpm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yarn-%E6%9B%B4%E6%8D%A2%E6%BA%90"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">yarn 更换源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">python配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-python-pip-%E5%92%8C-pipenv"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装 python&#x2F;pip 和 pipenv</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.</span> <span class="nav-text">Java配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-openjdk-openjdk-jre"><span class="nav-number">2.3.1.</span> <span class="nav-text">安装 openjdk &#x2F; openjdk-jre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85oracle-jdk-jre"><span class="nav-number">2.3.2.</span> <span class="nav-text">安装oracle jdk&#x2F;jre</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E4%B8%8B%E8%BD%BDjdk"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">首先下载jdk</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5"><span class="nav-number">2.3.2.1.1.</span> <span class="nav-text">下载链接</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E7%8E%AF%E5%A2%83"><span class="nav-number">2.4.</span> <span class="nav-text">python环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.4.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#anaconda"><span class="nav-number">2.4.2.</span> <span class="nav-text">anaconda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#coda"><span class="nav-number">2.4.3.</span> <span class="nav-text">coda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pytorch"><span class="nav-number">2.4.4.</span> <span class="nav-text">pytorch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorflow"><span class="nav-number">2.4.5.</span> <span class="nav-text">tensorflow</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">数据库配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongodb"><span class="nav-number">3.1.</span> <span class="nav-text">mongodb</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E5%92%8C%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="nav-number">3.1.1.</span> <span class="nav-text">配置数据库文件路径和日志文件路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8Cmongodb%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.2.</span> <span class="nav-text">运行mongodb数据库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">服务器配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">其他配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#maven-%E9%85%8D%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">maven 配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B2%E8%B4%A7"><span class="nav-number">6.</span> <span class="nav-text">干货</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux-vim-oh-my-zsh%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC"><span class="nav-number">6.1.</span> <span class="nav-text">tmux+vim+oh-my-zsh安装脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%84%9A%E6%9C%AC"><span class="nav-number">6.2.</span> <span class="nav-text">全家桶脚本</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">aak1247</p>
+  <div class="site-description" itemprop="description">Still water runs deep</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aak1247" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;aak1247" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:aak1247@126.com" title="E-Mail → mailto:aak1247@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/liu-ya-hui-61/activities" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;liu-ya-hui-61&#x2F;activities" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="//cdnjs.aak1247.cn/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.hive-intel.com/" title="https:&#x2F;&#x2F;www.hive-intel.com" rel="noopener" target="_blank">My Company: Meet Hive</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://0xc1.space/?from=legacy" title="https:&#x2F;&#x2F;0xc1.space&#x2F;?from&#x3D;legacy" rel="noopener" target="_blank">c1</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.aak1247.cn/blogs/2017/older-linux-start.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="aak1247">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑境">
+      <meta itemprop="description" content="Still water runs deep">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ubuntu Linux 装机完成后的工作 | 黑境">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu Linux 装机完成后的工作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2017-07-27T00:00:00+08:00">2017-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-20 19:40:18" itemprop="dateModified" datetime="2024-09-20T19:40:18+08:00">2024-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/trying/" itemprop="url" rel="index"><span itemprop="name">折腾</span></a>
+        </span>
+    </span>
+
+  
+        
+          <span class="post-meta-item" title="阅读次数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-eye"></i>
+            </span>
+            <span class="post-meta-item-text">阅读次数：</span>
+            <span id="ArtalkPV" data-page-key="/blogs/2017/older-linux-start.html" ></span>
+          </span>
+        
+      
+        
+          <span class="post-meta-item" title="评论数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-comment"></i>
+            </span>
+            <span class="post-meta-item-text">评论数：</span>
+            <a href="/blogs/2017/older-linux-start.html#comments" itemprop="discussionUrl">
+              <span id="ArtalkCount" class="post-comments-count" data-page-key="/blogs/2017/older-linux-start.html" itemprop="commentCount"></span>
+            </a>
+          </span>
+        
+      
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>记录一下一些我比较常用的配置。</p>
+<span id="more"></span>
+
+<h1 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h1><h2 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h2><p>主要配置 zsh 替代默认的bash, 配置地址<a target="_blank" rel="noopener" href="https://github.com/aak1247/shell-set-up">shell start up</a>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install zsh git &amp;&amp;\</span><br><span class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/aak1247/shell-set-up/master/install.sh -O -)&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p><img src="http://qiniu.cdn.hive-intel.com/aak1247/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_20180920140817.png" alt="截图"></p>
+<p>简单的基本vim配置，语法高亮、自动缩进等、状态栏配置等。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth=1 https://github.com/aak1247/vimrc.git ~/.vim_runtime</span><br><span class="line">sh ~/.vim_runtime/install_awesome_vimrc.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a>tmux</h2><p>很好看的tmux配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/aak1247/.tmux/master/install.sh -O -)&quot;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="语言环境"><a href="#语言环境" class="headerlink" title="语言环境"></a>语言环境</h1><h2 id="node配置"><a href="#node配置" class="headerlink" title="node配置"></a>node配置</h2><h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-nvm-安装-node"><a href="#通过-nvm-安装-node" class="headerlink" title="通过 nvm 安装 node"></a>通过 nvm 安装 node</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nvm install stable</span><br><span class="line">nvm use stable</span><br></pre></td></tr></table></figure>
+
+<p>在zsh下，可能需要（如果也安装了bash）手动将 nvm 环境变量加入 ~&#x2F;.zshrc文件末尾:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=&quot;$HOME/.nvm&quot;</span><br><span class="line"> [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm</span><br><span class="line"> [ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;  # This loads nvm bash_completion</span><br></pre></td></tr></table></figure>
+
+<p>然后更新一下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">source ~/.zshrc</span><br><span class="line">````</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">## 安装yarn</span></span></span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</span><br><span class="line">echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list</span><br><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install --no-install-recommends yarn</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置淘宝镜像"><a href="#配置淘宝镜像" class="headerlink" title="配置淘宝镜像"></a>配置淘宝镜像</h3><h4 id="npm-更换源"><a href="#npm-更换源" class="headerlink" title="npm 更换源"></a>npm 更换源</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装-cnpm"><a href="#安装-cnpm" class="headerlink" title="安装 cnpm"></a>安装 cnpm</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<h4 id="yarn-更换源"><a href="#yarn-更换源" class="headerlink" title="yarn 更换源"></a>yarn 更换源</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config set registry http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+
+<h2 id="python配置"><a href="#python配置" class="headerlink" title="python配置"></a>python配置</h2><h3 id="安装-python-pip-和-pipenv"><a href="#安装-python-pip-和-pipenv" class="headerlink" title="安装 python&#x2F;pip 和 pipenv"></a>安装 python&#x2F;pip 和 pipenv</h3><p>可以通过apt方式安装</p>
+<h2 id="Java配置"><a href="#Java配置" class="headerlink" title="Java配置"></a>Java配置</h2><h3 id="安装-openjdk-openjdk-jre"><a href="#安装-openjdk-openjdk-jre" class="headerlink" title="安装 openjdk &#x2F; openjdk-jre"></a>安装 openjdk &#x2F; openjdk-jre</h3><p>安装运行环境：<code>$ sudo apt-get install openjdk-8-jre</code>, 可以更改为其他版本 更改数字即可。</p>
+<p>安装开发环境：<code>$ sudo apt-get install openjdk-8-jdk</code>。</p>
+<p>使用openjdk的优点在于免去手动下载和配置环境变量的步骤，方便很多，但是<code>openjdk</code>与oracle jdk所包含的库有所差异，jdk9及以后版本的openjdk还存在一些其他问题。</p>
+<h3 id="安装oracle-jdk-jre"><a href="#安装oracle-jdk-jre" class="headerlink" title="安装oracle jdk&#x2F;jre"></a>安装oracle jdk&#x2F;jre</h3><h4 id="首先下载jdk"><a href="#首先下载jdk" class="headerlink" title="首先下载jdk"></a>首先下载jdk</h4><p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">官网</a></p>
+<p>可以先配置<code>FTP</code>然后通过<code>FTP</code>上传到服务器，也可以直接用<code>wget</code>命令下载，附<a href="#%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5">下载链接</a></p>
+<h5 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h5><p><a target="_blank" rel="noopener" href="http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/server-jre-8u144-linux-x64.tar.gz">Java SE 8 server sdk for x64</a></p>
+<p><a target="_blank" rel="noopener" href="http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.tar.gz">Java SE 8 JDK for X64</a></p>
+<p><a target="_blank" rel="noopener" href="http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jre-8u144-linux-x64.tar.gz">Java SE 8 jre for x64</a></p>
+<h2 id="python环境"><a href="#python环境" class="headerlink" title="python环境"></a>python环境</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python-pip #安装自带Python2.7对应的pip</span><br><span class="line">sudo apt install python3 #安装python3</span><br></pre></td></tr></table></figure>
+
+<h3 id="anaconda"><a href="#anaconda" class="headerlink" title="anaconda"></a>anaconda</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh</span><br><span class="line">sh Anaconda3-5.2.0-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="coda"><a href="#coda" class="headerlink" title="coda"></a>coda</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1804-10-0-local-10.0.130-410.48_1.0-1_amd64</span><br><span class="line">sudo dpkg -i cuda-repo-ubuntu1804-10-0-local-10.0.130-410.48_1.0-1_amd64.deb</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="pytorch"><a href="#pytorch" class="headerlink" title="pytorch"></a>pytorch</h3><h3 id="tensorflow"><a href="#tensorflow" class="headerlink" title="tensorflow"></a>tensorflow</h3><h1 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h1><h2 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h2><p><code>sudo apt install mongodb</code></p>
+<h3 id="配置数据库文件路径和日志文件路径"><a href="#配置数据库文件路径和日志文件路径" class="headerlink" title="配置数据库文件路径和日志文件路径"></a>配置数据库文件路径和日志文件路径</h3><p>配置文件为：<code>/etc/mongodb.conf</code>。</p>
+<h3 id="运行mongodb数据库"><a href="#运行mongodb数据库" class="headerlink" title="运行mongodb数据库"></a>运行mongodb数据库</h3><p><code>$ sudo service start mongodb start</code></p>
+<h1 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h1><p>留坑</p>
+<h1 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h1><h2 id="maven-配置"><a href="#maven-配置" class="headerlink" title="maven 配置"></a>maven 配置</h2><p>似乎不用怎么配置，直接安装即可<br><code>sudo apt install maven</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mvn -v</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="干货"><a href="#干货" class="headerlink" title="干货"></a>干货</h1><h2 id="tmux-vim-oh-my-zsh安装脚本"><a href="#tmux-vim-oh-my-zsh安装脚本" class="headerlink" title="tmux+vim+oh-my-zsh安装脚本"></a>tmux+vim+oh-my-zsh安装脚本</h2><p>留坑待填</p>
+<h2 id="全家桶脚本"><a href="#全家桶脚本" class="headerlink" title="全家桶脚本"></a>全家桶脚本</h2><p>留坑填</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="aak1247 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="aak1247 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>aak1247
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.aak1247.cn/blogs/2017/older-linux-start.html" title="ubuntu Linux 装机完成后的工作">http://www.aak1247.cn/blogs/2017/older-linux-start.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.jpg">
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+              <a href="/tags/ubuntu/" rel="tag"><i class="fa fa-tag"></i> ubuntu</a>
+              <a href="/tags/%E8%A3%85%E6%9C%BA/" rel="tag"><i class="fa fa-tag"></i> 装机</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-note-about-cmder.html" rel="prev" title="cmder使用笔记">
+                  <i class="fa fa-angle-left"></i> cmder使用笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-java-jar-as-service.html" rel="next" title="ubuntu 服务脚本编写">
+                  ubuntu 服务脚本编写 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陕ICP备19000654号 </a>
+      <img src="https://beian.mps.gov.cn/img/head-logo2.4d29d9b1.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">aak1247</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="//cdnjs.aak1247.cn/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"//cdnjs.aak1247.cn/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"//cdnjs.aak1247.cn/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://www.aak1247.cn/blogs/2017/older-linux-start.html"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="artalk" type="application/json">{"enable":true,"server":"https://artalk.aak1247.cn/","site":"aak1247's blog","jsUrl":"https://artalk.aak1247.cn/dist/Artalk.js","cssUrl":"https://artalk.aak1247.cn/dist/Artalk.css","pvCount":true,"commentCount":true,"darkMode":"auto","useBackendConf":true,"el":"#comments","pageKey":"/blogs/2017/older-linux-start.html","pageTitle":"ubuntu Linux 装机完成后的工作"}</script>
+
+<link rel="stylesheet" href="https://artalk.aak1247.cn/dist/Artalk.css">
+<style>.artalk{width:initial;}</style>
+
+<script type="text/javascript">
+;(function() {
+  if (CONFIG.page.comments) {
+
+    NexT.utils.loadComments(CONFIG.artalk.el)
+      .then(() => NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+        condition: window.Artalk 
+      }))
+      .then(() => {
+        Artalk.init(CONFIG.artalk);
+      });
+
+  } else {
+
+    NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+      condition: window.Artalk 
+    }).then(() => {
+      Artalk.loadCountWidget({
+        server: CONFIG.artalk.server,
+        site: CONFIG.artalk.site,
+        pvEl: '#ArtalkPV',
+        countEl: '#ArtalkCount',
+      });
+    })
+
+  }
+})();
+</script>
+</body>
+</html>

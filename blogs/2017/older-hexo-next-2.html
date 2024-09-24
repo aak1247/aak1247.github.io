@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo_blog_512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_blog_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_blog_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.geekzu.org/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.aak1247.cn","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="主要介绍一些第三方插件的接入以及几个有趣的功能的实现。 next主题内置了对多说评论的支持，只需要在站点配置文件中加入duoshuo_shortname字段，并填入注册多说时使用的域名后缀即可，详情可以查看多说配置 。 留言板官方的版本未提供对留言板的支持，不过这个可以通过一些方式很简单地实现。为了在导航菜单上添加留言板，需要修改主题配置文件(path&#x3D;&#39;next&#x2F;&#39;) 的menu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使hexo显得自己更有逼格（二）——功能补充">
+<meta property="og:url" content="http://www.aak1247.cn/blogs/2017/older-hexo-next-2.html">
+<meta property="og:site_name" content="黑境">
+<meta property="og:description" content="主要介绍一些第三方插件的接入以及几个有趣的功能的实现。 next主题内置了对多说评论的支持，只需要在站点配置文件中加入duoshuo_shortname字段，并填入注册多说时使用的域名后缀即可，详情可以查看多说配置 。 留言板官方的版本未提供对留言板的支持，不过这个可以通过一些方式很简单地实现。为了在导航菜单上添加留言板，需要修改主题配置文件(path&#x3D;&#39;next&#x2F;&#39;) 的menu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qiniu.cdn.hive-intel.com/aak1247/snipaste20170121_152642.png">
+<meta property="og:image" content="http://qiniu.cdn.hive-intel.com/aak1247/snipaste20170121_163304.png">
+<meta property="article:published_time" content="2017-01-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-20T12:16:14.508Z">
+<meta property="article:author" content="aak1247">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="next主题">
+<meta property="article:tag" content="静态博客">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qiniu.cdn.hive-intel.com/aak1247/snipaste20170121_152642.png">
+
+
+<link rel="canonical" href="http://www.aak1247.cn/blogs/2017/older-hexo-next-2.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.aak1247.cn/blogs/2017/older-hexo-next-2.html","path":"blogs/2017/older-hexo-next-2.html","title":"如何使hexo显得自己更有逼格（二）——功能补充"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何使hexo显得自己更有逼格（二）——功能补充 | 黑境</title>
+  
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://artalk.aak1247.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">黑境</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">aak1247的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li><li class="menu-item menu-item-issue"><a href="/issue" rel="section"><i class="fa fa-home fa-fw"></i>留言</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%99%E8%A8%80%E6%9D%BF"><span class="nav-number">1.</span> <span class="nav-text">留言板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.</span> <span class="nav-text">使用多说评论实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%80%E8%BF%91%E8%AE%BF%E5%AE%A2"><span class="nav-number">1.1.1.</span> <span class="nav-text">添加最近访客</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8github-issue%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">使用github issue实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">搜索功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E7%B9%81%E5%88%87%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text">简繁切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE"><span class="nav-number">4.</span> <span class="nav-text">站点地图</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">aak1247</p>
+  <div class="site-description" itemprop="description">Still water runs deep</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aak1247" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;aak1247" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:aak1247@126.com" title="E-Mail → mailto:aak1247@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/liu-ya-hui-61/activities" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;liu-ya-hui-61&#x2F;activities" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="//cdnjs.aak1247.cn/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.hive-intel.com/" title="https:&#x2F;&#x2F;www.hive-intel.com" rel="noopener" target="_blank">My Company: Meet Hive</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://0xc1.space/?from=legacy" title="https:&#x2F;&#x2F;0xc1.space&#x2F;?from&#x3D;legacy" rel="noopener" target="_blank">c1</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.aak1247.cn/blogs/2017/older-hexo-next-2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="aak1247">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑境">
+      <meta itemprop="description" content="Still water runs deep">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何使hexo显得自己更有逼格（二）——功能补充 | 黑境">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何使hexo显得自己更有逼格（二）——功能补充
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-01-21 00:00:00" itemprop="dateCreated datePublished" datetime="2017-01-21T00:00:00+08:00">2017-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-20 20:16:14" itemprop="dateModified" datetime="2024-09-20T20:16:14+08:00">2024-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/trying/" itemprop="url" rel="index"><span itemprop="name">折腾</span></a>
+        </span>
+    </span>
+
+  
+        
+          <span class="post-meta-item" title="阅读次数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-eye"></i>
+            </span>
+            <span class="post-meta-item-text">阅读次数：</span>
+            <span id="ArtalkPV" data-page-key="/blogs/2017/older-hexo-next-2.html" ></span>
+          </span>
+        
+      
+        
+          <span class="post-meta-item" title="评论数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-comment"></i>
+            </span>
+            <span class="post-meta-item-text">评论数：</span>
+            <a href="/blogs/2017/older-hexo-next-2.html#comments" itemprop="discussionUrl">
+              <span id="ArtalkCount" class="post-comments-count" data-page-key="/blogs/2017/older-hexo-next-2.html" itemprop="commentCount"></span>
+            </a>
+          </span>
+        
+      
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>主要介绍一些第三方插件的接入以及几个有趣的功能的实现。</p>
+<p>next主题内置了对多说评论的支持，只需要在站点配置文件中加入duoshuo_shortname字段，并填入注册多说时使用的域名后缀即可，详情可以查看<a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/third-party-services.html#duoshuo">多说配置</a> 。</p>
+<h3 id="留言板"><a href="#留言板" class="headerlink" title="留言板"></a>留言板</h3><p>官方的版本未提供对留言板的支持，不过这个可以通过一些方式很简单地实现。为了在导航菜单上添加留言板，需要修改主题配置文件(<code>path=&#39;next/&#39;</code>) 的menu项，加入message字段并给出页面路径，在<code>menu_icons</code>中加入图标的映射。</p>
+<span id="more"></span>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span> </span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">/message</span></span><br><span class="line"><span class="attr">menu_icons:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment">#KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">home</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">user</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">schedule:</span> <span class="string">calendar</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">archive</span></span><br><span class="line">  <span class="attr">sitemap:</span> <span class="string">sitemap</span></span><br><span class="line">  <span class="attr">commonweal:</span> <span class="string">heartbeat</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">comment</span></span><br></pre></td></tr></table></figure>
+
+<p>如果这时部署，你会发现菜单栏显示的标签为”menu.message”，这时由于语言文件中无对应项所致。语言文件的路径为：<code>next/languages/</code>，如果当前使用中文，修改路径下的<code>zh-Hans.yml</code>即可</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">message:</span> <span class="string">留言板</span></span><br></pre></td></tr></table></figure>
+
+<p>完成菜单创建以后还需要创建对应页面，只需要在站点的根目录下创建一个<code>/message</code>文件夹，在文件夹下建立<code>index.md</code>文件即可，具体内容根据实现方式而定。</p>
+<h4 id="使用多说评论实现"><a href="#使用多说评论实现" class="headerlink" title="使用多说评论实现"></a>使用多说评论实现</h4><p>使用多说评论的实现方式比较简单而且效果比较好，可以添加最近访客，并且评论比较方便。</p>
+<h5 id="添加最近访客"><a href="#添加最近访客" class="headerlink" title="添加最近访客"></a>添加最近访客</h5><p>对于已开启多说评论的站点加入以下代码即可，直接在<code>index.md</code>文件的结尾加入。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ds-recent-visitors&quot;</span> <span class="attr">data-num-items</span>=<span class="string">&quot;28&quot;</span> <span class="attr">data-avatar-size</span>=<span class="string">&quot;42&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ds-recent-visitors&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以修改主题默认的多说样式来定义外观，stylus文件路径为<code>next/source/css/_common/components/third-party/duoshuo.styl </code>，加入以下配置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#ds-recent-visitors</span> <span class="selector-class">.ds-avatar</span> &#123;</span><br><span class="line">  <span class="attribute">float</span><span class="selector-pseudo">:left</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#ds-recent-visitors</span> <span class="selector-class">.ds-avatar</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  //这里是自定义的多说最近访客头像样式css</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>页面文件<code>index.md</code>可以如下定义：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: 留言板</span><br><span class="line"><span class="section">date: 2017-01-21 15:21:45</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">&quot;blockquote-center&quot;</span>&gt;</span></span>欢迎留言<span class="language-xml"><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="quote">&gt; 最近访客</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;ds-recent-visitors&quot;</span> <span class="attr">data-num-items</span>=<span class="string">&quot;28&quot;</span> <span class="attr">data-avatar-size</span>=<span class="string">&quot;42&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ds-recent-visitors&quot;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>效果参考：</p>
+  <img src="http://qiniu.cdn.hive-intel.com/aak1247/snipaste20170121_152642.png" class="full-image">
+
+<h4 id="使用github-issue实现"><a href="#使用github-issue实现" class="headerlink" title="使用github issue实现"></a>使用github issue实现</h4><p>使用github issue也可以实现这一功能，github API为获取github的内容提供了支持，可以通过获取issue list或单个issue来实现。以单个issue的情况为例。</p>
+<p>**RESTful API: **</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /repos/:owner/:repo/issues/:number</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>Response:</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">Status<span class="punctuation">:</span> <span class="number">200</span> OK</span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/issues/1347&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;repository_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;labels_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/issues/1347/labels&#123;/name&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;comments_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/issues/1347/comments&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/issues/1347/events&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;html_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat/Hello-World/issues/1347&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;number&quot;</span><span class="punctuation">:</span> <span class="number">1347</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;open&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Found a bug&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="string">&quot;I&#x27;m having a problem with this.&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;user&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;login&quot;</span><span class="punctuation">:</span> <span class="string">&quot;octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;avatar_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/images/error/octocat_happy.gif&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;gravatar_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;html_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;followers_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/followers&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;following_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/following&#123;/other_user&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;gists_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/gists&#123;/gist_id&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;starred_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/starred&#123;/owner&#125;&#123;/repo&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;subscriptions_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/subscriptions&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;organizations_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/orgs&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;repos_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/repos&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/events&#123;/privacy&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;received_events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/received_events&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;User&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;site_admin&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;labels&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">208045946</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/labels/bug&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bug&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;color&quot;</span><span class="punctuation">:</span> <span class="string">&quot;f29513&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;assignee&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;login&quot;</span><span class="punctuation">:</span> <span class="string">&quot;octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;avatar_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/images/error/octocat_happy.gif&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;gravatar_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;html_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;followers_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/followers&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;following_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/following&#123;/other_user&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;gists_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/gists&#123;/gist_id&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;starred_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/starred&#123;/owner&#125;&#123;/repo&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;subscriptions_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/subscriptions&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;organizations_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/orgs&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;repos_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/repos&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/events&#123;/privacy&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;received_events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/received_events&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;User&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;site_admin&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;milestone&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/milestones/1&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;html_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat/Hello-World/milestones/v1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;labels_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/milestones/1/labels&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1002604</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;number&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;state&quot;</span><span class="punctuation">:</span> <span class="string">&quot;open&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;v1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Tracking milestone for version 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;creator&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;login&quot;</span><span class="punctuation">:</span> <span class="string">&quot;octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;avatar_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/images/error/octocat_happy.gif&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;gravatar_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;html_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;followers_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/followers&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;following_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/following&#123;/other_user&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;gists_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/gists&#123;/gist_id&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;starred_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/starred&#123;/owner&#125;&#123;/repo&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;subscriptions_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/subscriptions&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;organizations_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/orgs&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;repos_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/repos&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/events&#123;/privacy&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;received_events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/received_events&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;User&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;site_admin&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;open_issues&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;closed_issues&quot;</span><span class="punctuation">:</span> <span class="number">8</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2011-04-10T20:09:31Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;updated_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2014-03-03T18:58:10Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;closed_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2013-02-12T13:22:01Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;due_on&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2012-10-09T23:39:01Z&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;locked&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;comments&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;pull_request&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/repos/octocat/Hello-World/pulls/1347&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;html_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat/Hello-World/pull/1347&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;diff_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat/Hello-World/pull/1347.diff&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;patch_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat/Hello-World/pull/1347.patch&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;closed_at&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2011-04-22T13:33:48Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;updated_at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2011-04-22T13:33:48Z&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;closed_by&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;login&quot;</span><span class="punctuation">:</span> <span class="string">&quot;octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;avatar_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/images/error/octocat_happy.gif&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;gravatar_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;html_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/octocat&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;followers_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/followers&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;following_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/following&#123;/other_user&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;gists_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/gists&#123;/gist_id&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;starred_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/starred&#123;/owner&#125;&#123;/repo&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;subscriptions_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/subscriptions&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;organizations_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/orgs&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;repos_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/repos&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/events&#123;/privacy&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;received_events_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.github.com/users/octocat/received_events&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;User&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;site_admin&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>  可以利用异步加载提高载入速度，js文件如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ghComment = $(<span class="string">&quot;#gh-comments&quot;</span>) ;</span><br><span class="line"><span class="comment">//var ghComment_count = $(&quot;gh-comments-count&quot;) ;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">formatNumber</span>(<span class="params">val, len</span>)  &#123;</span><br><span class="line">    <span class="keyword">var</span> num = <span class="string">&quot;&quot;</span> + val;</span><br><span class="line">    len = len || <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">while</span> (num.<span class="property">length</span> &lt; len)  &#123;</span><br><span class="line">        num = <span class="string">&quot;0&quot;</span> + num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">formatDate</span>(<span class="params">str</span>)  &#123;</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Date</span>.<span class="title function_">parse</span>(str) ) ;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">formatNumber</span>(date.<span class="title function_">getFullYear</span>() )  + <span class="string">&#x27;-&#x27;</span> + <span class="title function_">formatNumber</span>(date.<span class="title function_">getMonth</span>()  + <span class="number">1</span>)  + <span class="string">&#x27;-&#x27;</span> + <span class="title function_">formatNumber</span>(date.<span class="title function_">getDate</span>() )  + </span><br><span class="line">            <span class="string">&quot; &quot;</span> + <span class="title function_">formatNumber</span>(date.<span class="title function_">getHours</span>() )  + <span class="string">&quot;:&quot;</span> + <span class="title function_">formatNumber</span>(date.<span class="title function_">getMinutes</span>() )  + <span class="string">&quot;:&quot;</span> + <span class="title function_">formatNumber</span>(date.<span class="title function_">getSeconds</span>() ) ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">loadComments</span>(<span class="params">data</span>)  &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;load comments&quot;</span>) ;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;gh-comments-count&quot;</span>) .<span class="property">innerHTML</span> = data.<span class="property">length</span>.<span class="title function_">toString</span>() ;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.<span class="property">length</span>; i++)  &#123;</span><br><span class="line">        <span class="keyword">var</span> cuser = data[i].<span class="property">user</span>.<span class="property">login</span>;</span><br><span class="line">        <span class="keyword">var</span> cuserlink = <span class="string">&#x27;https://www.github.com/&#x27;</span> + data[i].<span class="property">user</span>.<span class="property">login</span>;</span><br><span class="line">        <span class="keyword">var</span> cbody = data[i].<span class="property">body_html</span>;</span><br><span class="line">        <span class="keyword">var</span> cavatarlink = data[i].<span class="property">user</span>.<span class="property">avatar_url</span>;</span><br><span class="line">        <span class="keyword">var</span> cdate = <span class="title function_">formatDate</span>(data[i].<span class="property">created_at</span>) ;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(cbody) ;</span><br><span class="line">        ghComment.<span class="title function_">append</span>(<span class="string">&#x27;&lt;div class=&quot;gh-single-comment&quot;&gt;&lt;div class=&quot;commentgravatar&quot;&gt;&lt;a href=&quot;&#x27;</span>+</span><br><span class="line">        + cuserlink +<span class="string">&#x27;&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;&#x27;</span> </span><br><span class="line">        + cavatarlink + <span class="string">&#x27;&quot;&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;commentheader&quot;&gt;&lt;a class=&quot;commentuser&quot; href=&quot;&#x27;</span> </span><br><span class="line">        + cuserlink + <span class="string">&#x27;&quot; target=&quot;_blank&quot;&gt;&#x27;</span> + cuser + <span class="string">&#x27;&lt;/a&gt;&lt;span class=&quot;commentdate&quot;&gt;&#x27;</span> </span><br><span class="line">        + cdate + <span class="string">&#x27;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;commentbody&quot;&gt;&#x27;</span> + cbody + <span class="string">&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;</span>) ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$.<span class="title function_">ajax</span>(<span class="string">&#x27;https://api.github.com/repos/aak1247/aak1247.github.io/issues/1/comments?per_page=100&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="title class_">Accept</span>: <span class="string">&#x27;application/vnd.github.full+json&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">dataType</span>: <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>: loadComments</span><br><span class="line">&#125;) ;</span><br></pre></td></tr></table></figure>
+
+<p>  将JS文件保存到<code>next/js</code>路径下。</p>
+<p>  添加issue.swig文件到<code>next/latout/_custom/</code>，其内容为：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">blockquote</span> class=&quot;<span class="selector-tag">blockquote</span>-center leave-message&quot;&gt;快来留言吧！~请在 &lt;<span class="selector-tag">a</span> href=&quot;https://github.com/aak1247/aak1247.github.io/issues/<span class="number">1</span><span class="string">&quot; target=&quot;</span>_blank<span class="string">&quot;&gt;Github issue&lt;/a&gt; 页面完成操作&lt;/blockquote&gt;</span></span><br><span class="line"><span class="string">&lt;div id=&quot;</span>messages<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div id=&quot;</span>gh-comments-info<span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">            &lt;a href=&quot;</span>javascript:<span class="built_in">void</span>(<span class="number">0</span>) ;&quot;&gt;</span><br><span class="line">            &lt;<span class="selector-tag">span</span> id=&quot;gh-comments-count&quot;&gt;<span class="number">0</span>&lt;/<span class="selector-tag">span</span>&gt;条留言&lt;/<span class="selector-tag">a</span>&gt;</span><br><span class="line">    &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span> id=&quot;gh-comments&quot; style=&quot;<span class="attribute">opacity</span>: <span class="number">1</span><span class="string">&quot;&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;script src=&quot;</span>https://cdn.jsdelivr.net/jquery/<span class="number">2.1</span>.<span class="number">3</span>/jquery.min.js<span class="string">&quot;&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;script type=&quot;</span>text/javascript<span class="string">&quot; src=&quot;</span>&#123;&#123; <span class="built_in">url_for</span>(theme.js)  &#125;&#125;/<span class="attribute">src</span>/issue<span class="selector-class">.js</span>&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  修改page.swig文件，在<code>&lt;div id=&quot;posts&quot; class=&quot;posts-expand&quot;&gt;</code>中，找到</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>  在其上方加入如下：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elif page<span class="selector-class">.type</span> === &#x27;issue&#x27; %&#125;</span><br><span class="line">  &#123;% include &#x27;_custom/issue<span class="selector-class">.swig</span>&#x27; %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  使添加的issue.swig文件能够包含进来。</p>
+<p>  然后在<code>index.md</code>中写入：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: 留言板</span><br><span class="line">date: 2017-01-17 16:27:30</span><br><span class="line">type: &quot;issue&quot;</span><br><span class="line"><span class="section">comments: false</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>  效果如下：</p>
+<p>  <img src="http://qiniu.cdn.hive-intel.com/aak1247/snipaste20170121_163304.png" class="full-image"/>       </p>
+<h3 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h3><p>  next主题内置了对algolia-search&#x2F;tinysearch&#x2F;swiftsearch的支持，同时也提供了一个local search的插件，考虑到第三方服务的不稳定性以及可能付费等等问题，推荐使用local search，只需要在站点配置文件中加入：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span> </span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>  同时在package.json中加入<code>&quot;hexo-generator-search&quot;: &quot;^1.0.2&quot;</code>依赖项即可。本地部署的可以手动输入<code>npm i</code>完成依赖项的安装，使用Travis自动部署时无需修改配置脚本。效果可以在<a target="_blank" rel="noopener" href="http://aak1247.coding.me/">黑境</a> 中预览。</p>
+<h3 id="简繁切换"><a href="#简繁切换" class="headerlink" title="简繁切换"></a>简繁切换</h3><p>  这是一个通用的方法，使用js处理可以避免后端语言的差异，代码来自网上。只需要将 cookdomain修改为你的页面地址即可。链接：<a target="_blank" rel="noopener" href="https://github.com/aak1247/warehouse/blob/master/codes/js/tw-cn.js">tw-cn.js</a> </p>
+<h3 id="站点地图"><a href="#站点地图" class="headerlink" title="站点地图"></a>站点地图</h3><p>  只需要在站点配置文件中加入：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sitemap:</span> </span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br><span class="line"><span class="attr">baidusitemap:</span> </span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidusitemap.xml</span></span><br></pre></td></tr></table></figure>
+
+<p>  在<code>package.json</code>中加入依赖项<code>&quot;hexo-generator-sitemap&quot;: &quot;^1.1.2&quot;</code>即可。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="aak1247 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="aak1247 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>aak1247
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.aak1247.cn/blogs/2017/older-hexo-next-2.html" title="如何使hexo显得自己更有逼格（二）——功能补充">http://www.aak1247.cn/blogs/2017/older-hexo-next-2.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.jpg">
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+              <a href="/tags/next%E4%B8%BB%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> next主题</a>
+              <a href="/tags/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" rel="tag"><i class="fa fa-tag"></i> 静态博客</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-hexo-next-1.html" rel="prev" title="如何使hexo显得自己更有逼格（一）——开始使用">
+                  <i class="fa fa-angle-left"></i> 如何使hexo显得自己更有逼格（一）——开始使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-hexo-problems.html" rel="next" title="hexo部署中遇到的一些问题">
+                  hexo部署中遇到的一些问题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陕ICP备19000654号 </a>
+      <img src="https://beian.mps.gov.cn/img/head-logo2.4d29d9b1.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">aak1247</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="//cdnjs.aak1247.cn/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"//cdnjs.aak1247.cn/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"//cdnjs.aak1247.cn/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://www.aak1247.cn/blogs/2017/older-hexo-next-2.html"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="artalk" type="application/json">{"enable":true,"server":"https://artalk.aak1247.cn/","site":"aak1247's blog","jsUrl":"https://artalk.aak1247.cn/dist/Artalk.js","cssUrl":"https://artalk.aak1247.cn/dist/Artalk.css","pvCount":true,"commentCount":true,"darkMode":"auto","useBackendConf":true,"el":"#comments","pageKey":"/blogs/2017/older-hexo-next-2.html","pageTitle":"如何使hexo显得自己更有逼格（二）——功能补充"}</script>
+
+<link rel="stylesheet" href="https://artalk.aak1247.cn/dist/Artalk.css">
+<style>.artalk{width:initial;}</style>
+
+<script type="text/javascript">
+;(function() {
+  if (CONFIG.page.comments) {
+
+    NexT.utils.loadComments(CONFIG.artalk.el)
+      .then(() => NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+        condition: window.Artalk 
+      }))
+      .then(() => {
+        Artalk.init(CONFIG.artalk);
+      });
+
+  } else {
+
+    NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+      condition: window.Artalk 
+    }).then(() => {
+      Artalk.loadCountWidget({
+        server: CONFIG.artalk.server,
+        site: CONFIG.artalk.site,
+        pvEl: '#ArtalkPV',
+        countEl: '#ArtalkCount',
+      });
+    })
+
+  }
+})();
+</script>
+</body>
+</html>

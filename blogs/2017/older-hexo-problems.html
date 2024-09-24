@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo_blog_512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo_blog_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo_blog_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.geekzu.org/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdnjs.aak1247.cn/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.aak1247.cn","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;有一种遍地是坑的感觉，还是too young ，hexo官方提供的错误文档提供了一些提示，不过没有提供错误的log很难定位属于哪一种。遇到过的错误如下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo部署中遇到的一些问题">
+<meta property="og:url" content="http://www.aak1247.cn/blogs/2017/older-hexo-problems.html">
+<meta property="og:site_name" content="黑境">
+<meta property="og:description" content="&nbsp;&nbsp;&nbsp;&nbsp;有一种遍地是坑的感觉，还是too young ，hexo官方提供的错误文档提供了一些提示，不过没有提供错误的log很难定位属于哪一种。遇到过的错误如下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-01-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-20T11:39:26.040Z">
+<meta property="article:author" content="aak1247">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="问题">
+<meta property="article:tag" content="错误记录">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.aak1247.cn/blogs/2017/older-hexo-problems.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.aak1247.cn/blogs/2017/older-hexo-problems.html","path":"blogs/2017/older-hexo-problems.html","title":"hexo部署中遇到的一些问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>hexo部署中遇到的一些问题 | 黑境</title>
+  
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://artalk.aak1247.cn/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">黑境</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">aak1247的博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li><li class="menu-item menu-item-issue"><a href="/issue" rel="section"><i class="fa fa-home fa-fw"></i>留言</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BC%BA%E5%B0%91%E9%80%97%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text">配置文件缺少逗号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BC%BA%E5%B0%91%E7%A9%BA%E6%A0%BC"><span class="nav-number">2.</span> <span class="nav-text">配置文件缺少空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%99%A8%E7%9A%84bug"><span class="nav-number">3.</span> <span class="nav-text">渲染器的bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown%E6%96%87%E4%BB%B6%E4%B9%A6%E5%86%99%E4%B8%8D%E8%A7%84%E8%8C%83"><span class="nav-number">4.</span> <span class="nav-text">markdown文件书写不规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#https%E4%B8%8Ehttp%E6%B7%B7%E5%90%88%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">https与http混合问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8iframe%E8%BF%9B%E8%A1%8C%E5%8A%A0%E8%BD%BD"><span class="nav-number">5.1.</span> <span class="nav-text">使用iframe进行加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E5%8D%8F%E8%AE%AE%E5%8A%A0%E8%BD%BD"><span class="nav-number">5.2.</span> <span class="nav-text">使用相对协议加载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.2.1.</span> <span class="nav-text">相对协议</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="aak1247"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">aak1247</p>
+  <div class="site-description" itemprop="description">Still water runs deep</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/aak1247" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;aak1247" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:aak1247@126.com" title="E-Mail → mailto:aak1247@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/liu-ya-hui-61/activities" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;liu-ya-hui-61&#x2F;activities" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="//cdnjs.aak1247.cn/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://www.hive-intel.com/" title="https:&#x2F;&#x2F;www.hive-intel.com" rel="noopener" target="_blank">My Company: Meet Hive</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://0xc1.space/?from=legacy" title="https:&#x2F;&#x2F;0xc1.space&#x2F;?from&#x3D;legacy" rel="noopener" target="_blank">c1</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.aak1247.cn/blogs/2017/older-hexo-problems.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="aak1247">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑境">
+      <meta itemprop="description" content="Still water runs deep">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="hexo部署中遇到的一些问题 | 黑境">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo部署中遇到的一些问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-01-22 00:00:00" itemprop="dateCreated datePublished" datetime="2017-01-22T00:00:00+08:00">2017-01-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-20 19:39:26" itemprop="dateModified" datetime="2024-09-20T19:39:26+08:00">2024-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/trying/" itemprop="url" rel="index"><span itemprop="name">折腾</span></a>
+        </span>
+    </span>
+
+  
+        
+          <span class="post-meta-item" title="阅读次数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-eye"></i>
+            </span>
+            <span class="post-meta-item-text">阅读次数：</span>
+            <span id="ArtalkPV" data-page-key="/blogs/2017/older-hexo-problems.html" ></span>
+          </span>
+        
+      
+        
+          <span class="post-meta-item" title="评论数">
+            <span class="post-meta-item-icon">
+              <i class="far fa-comment"></i>
+            </span>
+            <span class="post-meta-item-text">评论数：</span>
+            <a href="/blogs/2017/older-hexo-problems.html#comments" itemprop="discussionUrl">
+              <span id="ArtalkCount" class="post-comments-count" data-page-key="/blogs/2017/older-hexo-problems.html" itemprop="commentCount"></span>
+            </a>
+          </span>
+        
+      
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>&nbsp;&nbsp;&nbsp;&nbsp;有一种遍地是坑的感觉，还是<code>too young</code> ，hexo官方提供的<a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">错误文档</a>提供了一些提示，不过没有提供错误的log很难定位属于哪一种。遇到过的错误如下</p>
+<span id="more"></span>
+<h3 id="配置文件缺少逗号"><a href="#配置文件缺少逗号" class="headerlink" title="配置文件缺少逗号"></a>配置文件缺少逗号</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;报错信息如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FATAL missed comma between flow collection entries at line 33, column 11:</span><br><span class="line"></span><br><span class="line">              <span class="string">&quot;fields&quot;</span>: [</span><br><span class="line"></span><br><span class="line">              ^</span><br><span class="line"></span><br><span class="line">YAMLException: missed comma between flow collection entries at line 33, column 11:</span><br><span class="line"></span><br><span class="line">              <span class="string">&quot;fields&quot;</span>: [</span><br><span class="line"></span><br><span class="line">              ^</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;yaml文件语言要求在每一个冒号后面追加一个空格，这也是一种良好地代码风格。</p>
+<h3 id="配置文件缺少空格"><a href="#配置文件缺少空格" class="headerlink" title="配置文件缺少空格"></a>配置文件缺少空格</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;报错信息如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YAMLException: end of the stream or a document separator is expected at line x, column y:</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="渲染器的bug"><a href="#渲染器的bug" class="headerlink" title="渲染器的bug"></a>渲染器的bug</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;如下符合swig&#x2F;nunjucks语法的代码：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; xxx &#125;&#125;</span><br><span class="line">&#123;% xxx %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;可能会引发报错。如果写在块儿级代码块儿中没有问题，但是如果写在行内代码中``之间``  就可能引发报错，报错信息如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br><span class="line">Template render error: (unknown path) [Line 7, Column 23]</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br><span class="line">Template render error: (unknown path)</span><br></pre></td></tr></table></figure>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;可以将语句写在块儿级代码中，因为hexo不会渲染&lt;pre&gt;与&lt;&#x2F;pre&gt;之间的内容，markdown的块儿级代码被解析为:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">	......</span><br><span class="line">	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;也可以通过利用nunjucks的raw标签进行屏蔽。</p>
+<h3 id="markdown文件书写不规范"><a href="#markdown文件书写不规范" class="headerlink" title="markdown文件书写不规范"></a>markdown文件书写不规范</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;hexo所采用的markdown渲染器要求markdown文件标签前缀与内容之间间隔一个半角空格，如果不符合此规范可能会无法渲染。如标题显示###标题而不是格式化的标题。添加一个空格即可。</p>
+<h3 id="https与http混合问题"><a href="#https与http混合问题" class="headerlink" title="https与http混合问题"></a>https与http混合问题</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;HTTPS是使用SSL的安全传输协议，自然对于页面中使用HTTP协议传输的内容存在一些限制。如果在https页面中使用http资源就可能导致资源加载异常。主要的异常有以下几种：</p>
+<ol>
+<li>js和flash资源： 直接被浏览器屏蔽</li>
+<li>其他页面资源： 弹出提示框询问是否加载或屏蔽</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;当然，也有正常加载的情况。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;对于HTTPS页面中的HTTP资源，可以使用以下两种方式进行加载，避免可能出现的加载异常问题。</p>
+<h4 id="使用iframe进行加载"><a href="#使用iframe进行加载" class="headerlink" title="使用iframe进行加载"></a>使用iframe进行加载</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;浏览器会阻止https页面中直接请求http资源，但是如果是在HTTPS页面中嵌入的iframe中请求就不再有问题了，可以通过一个不显示的iframe完成对http资源的请求，这样就绕过了浏览器对https页面中http请求的屏蔽。</p>
+<h4 id="使用相对协议加载"><a href="#使用相对协议加载" class="headerlink" title="使用相对协议加载"></a>使用相对协议加载</h4><h5 id="相对协议"><a href="#相对协议" class="headerlink" title="相对协议"></a>相对协议</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;相对协议简言之就是省略掉协议类型而直接写链接路径的请求方式，例如<code>&lt;img src=&quot;//baidu.com.gif&quot;&gt;</code>, 浏览器会根据页面类型请求资源，例如在HTTPS页面中就使用HTTPS协议的方式请求资源。css文件也可以使用此方式。</p>
+<blockquote>
+<p>注意：&lt;link&gt; 或 @import 引入样式表时使用相对协议，IE7、IE8会下载文件两次</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;另外，在github page中使用不支持https的资源，如果采用相对协议可能会导致加载异常缓慢，对于一部分资源（图片等）可以采用http的方式加载，当然更好的方式是采用本地文件进行加载，或者单独建立用于存储静态文件的repo。另外github其实还有一个存储其他文件的服务器，也可以将文件放在issue中通过链接访问。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="aak1247 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="aak1247 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>aak1247
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.aak1247.cn/blogs/2017/older-hexo-problems.html" title="hexo部署中遇到的一些问题">http://www.aak1247.cn/blogs/2017/older-hexo-problems.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.jpg">
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+              <a href="/tags/%E9%97%AE%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 问题</a>
+              <a href="/tags/%E9%94%99%E8%AF%AF%E8%AE%B0%E5%BD%95/" rel="tag"><i class="fa fa-tag"></i> 错误记录</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-hexo-next-2.html" rel="prev" title="如何使hexo显得自己更有逼格（二）——功能补充">
+                  <i class="fa fa-angle-left"></i> 如何使hexo显得自己更有逼格（二）——功能补充
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blogs/2017/older-hexo-next-3.html" rel="next" title="如何使hexo显得自己更有逼格（三）——自定义与优化">
+                  如何使hexo显得自己更有逼格（三）——自定义与优化 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陕ICP备19000654号 </a>
+      <img src="https://beian.mps.gov.cn/img/head-logo2.4d29d9b1.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">aak1247</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="//cdnjs.aak1247.cn/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"//cdnjs.aak1247.cn/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"//cdnjs.aak1247.cn/ajax/libs/mermaid/10.9.0/mermaid.min.js","integrity":"sha256-stuqcu2FrjYCXDOytWFA5SoUE/r3nkp6gTglzNSlavU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  <script src="//cdnjs.aak1247.cn/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://www.aak1247.cn/blogs/2017/older-hexo-problems.html"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="artalk" type="application/json">{"enable":true,"server":"https://artalk.aak1247.cn/","site":"aak1247's blog","jsUrl":"https://artalk.aak1247.cn/dist/Artalk.js","cssUrl":"https://artalk.aak1247.cn/dist/Artalk.css","pvCount":true,"commentCount":true,"darkMode":"auto","useBackendConf":true,"el":"#comments","pageKey":"/blogs/2017/older-hexo-problems.html","pageTitle":"hexo部署中遇到的一些问题"}</script>
+
+<link rel="stylesheet" href="https://artalk.aak1247.cn/dist/Artalk.css">
+<style>.artalk{width:initial;}</style>
+
+<script type="text/javascript">
+;(function() {
+  if (CONFIG.page.comments) {
+
+    NexT.utils.loadComments(CONFIG.artalk.el)
+      .then(() => NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+        condition: window.Artalk 
+      }))
+      .then(() => {
+        Artalk.init(CONFIG.artalk);
+      });
+
+  } else {
+
+    NexT.utils.getScript(CONFIG.artalk.jsUrl, {
+      condition: window.Artalk 
+    }).then(() => {
+      Artalk.loadCountWidget({
+        server: CONFIG.artalk.server,
+        site: CONFIG.artalk.site,
+        pvEl: '#ArtalkPV',
+        countEl: '#ArtalkCount',
+      });
+    })
+
+  }
+})();
+</script>
+</body>
+</html>
