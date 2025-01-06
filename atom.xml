@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.aak1247.cn/"/>
-  <updated>2025-01-06T12:52:08.844Z</updated>
+  <updated>2025-01-06T12:53:33.310Z</updated>
   <id>http://www.aak1247.cn/</id>
   
   <author>
@@ -21,17 +21,16 @@
     <link href="http://www.aak1247.cn/blogs/2025/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%85%BC%E5%AE%B9%E8%AE%BE%E8%AE%A1.html"/>
     <id>http://www.aak1247.cn/blogs/2025/跨平台兼容设计.html</id>
     <published>2025-01-05T16:00:00.000Z</published>
-    <updated>2025-01-06T12:52:08.844Z</updated>
+    <updated>2025-01-06T12:53:33.310Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;导航设计&quot;&gt;&lt;a href=&quot;#导航设计&quot; class=&quot;headerlink&quot; title=&quot;导航设计&quot;&gt;&lt;/a&gt;导航设计&lt;/h1&gt;&lt;p&gt;PC导航一般采用左侧导航栏+分级导航的设计，整体逻辑结构是：左-&amp;gt;右依次深入；&lt;br&gt;移动端导航一般采用底部导航 且
-        
-      
+      &lt;h1 id=&quot;基本原则&quot;&gt;&lt;a href=&quot;#基本原则&quot; class=&quot;headerlink&quot; title=&quot;基本原则&quot;&gt;&lt;/a&gt;基本原则&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;保证功能一致性&lt;/li&gt;
+&lt;li&gt;保证信息一致性&lt;/li&gt;
+&lt;li&gt;布局基本同构&lt;/li&gt;
+&lt;li&gt;交互符合用户习惯&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     

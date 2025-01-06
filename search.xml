@@ -6,7 +6,15 @@
     <entry>
       <title><![CDATA[跨平台兼容设计]]></title>
       <url>http://www.aak1247.cn/blogs/2025/%25E8%25B7%25A8%25E5%25B9%25B3%25E5%258F%25B0%25E5%2585%25BC%25E5%25AE%25B9%25E8%25AE%25BE%25E8%25AE%25A1.html</url>
-      <content type="html"><![CDATA[<h1 id="导航设计"><a href="#导航设计" class="headerlink" title="导航设计"></a>导航设计</h1><p>PC导航一般采用左侧导航栏+分级导航的设计，整体逻辑结构是：左-&gt;右依次深入；<br>移动端导航一般采用底部导航 且 只做单级导航，低频功能可以收起做子页面；</p>
+      <content type="html"><![CDATA[<h1 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h1><ol>
+<li>保证功能一致性</li>
+<li>保证信息一致性</li>
+<li>布局基本同构</li>
+<li>交互符合用户习惯</li>
+</ol>
+<span id="more"></span>
+
+<h1 id="导航设计"><a href="#导航设计" class="headerlink" title="导航设计"></a>导航设计</h1><p>PC导航一般采用左侧导航栏+分级导航的设计，整体逻辑结构是：左-&gt;右依次深入；<br>移动端导航一般采用底部导航 且 只做单级导航，低频功能可以收起做子页面；</p>
 <h2 id="多级兼容"><a href="#多级兼容" class="headerlink" title="多级兼容"></a>多级兼容</h2><h3 id="隐藏分级"><a href="#隐藏分级" class="headerlink" title="隐藏分级"></a>隐藏分级</h3><p>最简单的方式是类似飞书的设计，分级导航是一个切换逻辑，本身不是必选项。也就是说，完全可以将分级导航隐藏起来（飞书的分级是Filter），如此一来，分级就可以在移动端通过触发侧边栏来进行操作。</p>
 <h3 id="不做分级"><a href="#不做分级" class="headerlink" title="不做分级"></a>不做分级</h3><p>企业微信的做法更直接，两端都不做分级。<br>但是这会带来一个问题，那就是PC的侧边导航信息过少（如果只有移动端的底部导航）。企业微信提供的解决办法：</p>
 <ol>
